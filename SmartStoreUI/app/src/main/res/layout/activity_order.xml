@@ -18,8 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp"
-        android:layout_weight="1">
+        android:padding="20dp">
 
         <TextView
             android:id="@+id/tv_name"
@@ -98,11 +97,84 @@
         </LinearLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/coffee_menu_back">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:layout_gravity="center"
+            android:text="평점"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5sp"
+            android:text="2.8점"
+            android:textColor="@color/black"
+            android:fontFamily="@font/cafe24_ssurround_air"
+            android:textSize="20sp"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <RatingBar
+            android:id="@+id/rating_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:max="5"
+            android:stepSize="0.1"
+            android:rating="2.8"
+            android:isIndicator="true"
+            android:progressTint="@color/coffee_point_red"
+            android:progressBackgroundTint="@color/coffee_light_gray"
+            style="?android:attr/ratingBarStyleIndicator"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="20sp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/ed_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textview_regular"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/btn_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:textColor="@color/coffee_brown"
+            android:background="@drawable/button_color"
+            android:text="등록"/>
+    </LinearLayout>
+    
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
     <Button
         android:id="@+id/btn_add_order"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_color"
         android:backgroundTint="@color/coffee_point_red"
         android:text="담기"
         android:onClick="goList" />

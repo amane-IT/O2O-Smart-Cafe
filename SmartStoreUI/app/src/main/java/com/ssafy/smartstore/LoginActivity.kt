@@ -38,8 +38,6 @@ class LoginActivity : AppCompatActivity() {
                 login()
             }
         }
-
-
     }
 
     private fun setPreference(recUser: User) {

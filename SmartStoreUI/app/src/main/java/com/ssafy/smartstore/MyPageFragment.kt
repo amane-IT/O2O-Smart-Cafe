@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ssafy.smartstore.databases.History
 import com.ssafy.smartstore.databinding.FragmentMyPageBinding
 import com.ssafy.smartstore.dto.OrderMap
 import com.ssafy.smartstore.service.OrderService
@@ -18,9 +17,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MyPageFragment : Fragment() {
 

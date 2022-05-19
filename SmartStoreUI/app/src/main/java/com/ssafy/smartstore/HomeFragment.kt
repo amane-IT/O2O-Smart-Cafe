@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ssafy.smartstore.databases.History
 import com.ssafy.smartstore.databinding.FragmentHomeBinding
 import com.ssafy.smartstore.dto.OrderMap
 import com.ssafy.smartstore.service.OrderService

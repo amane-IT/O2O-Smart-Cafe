@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="5sp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="맛있어요"
+        android:textColor="@color/coffee_brown"
+        android:textSize="20sp"
+        android:layout_weight="1"/>
+
+    <ImageButton
+        android:id="@+id/btn_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/edit"
+        android:background="@drawable/indicator"
+        android:layout_marginLeft="5sp"
+        android:backgroundTint="@color/coffee_brown"/>
+
+    <ImageButton
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/delete"
+        android:layout_marginLeft="5sp"
+        android:background="@drawable/indicator"
+        android:backgroundTint="@color/coffee_brown"/>
+
+
+</LinearLayout>
