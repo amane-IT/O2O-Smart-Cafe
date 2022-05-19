@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "292527348902",
+    "project_id": "ssafy-cafe-349400",
+    "storage_bucket": "ssafy-cafe-349400.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292527348902:android:d09c3ba7e0eb41a42da867",
+        "android_client_info": {
+          "package_name": "com.ssafy.smartstore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292527348902-bh6td2qvv60duataise970c0ipvmdr54.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ssafy.smartstore",
+            "certificate_hash": "20914d764e8426e2216f65546bd217fc39398d65"
+          }
+        },
+        {
+          "client_id": "292527348902-7ddlehr4mn0h5ka4g4pknbo5ic2dv07v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDULgJaV6_qaLKo3WkuCo1e2J6ugJDBPgk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "292527348902-7ddlehr4mn0h5ka4g4pknbo5ic2dv07v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

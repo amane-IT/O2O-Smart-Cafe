@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingBottom="20dp">
+
+    <ImageView
+        android:id="@+id/img_detail_img"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_weight="1"
+        android:background="@drawable/button_go_order"
+        tools:src="@drawable/coffee1"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="아메리카노"
+            android:textSize="24sp"
+            android:textColor="@color/coffee_dark_brown"
+            android:fontFamily="@font/eland_choice_m"/>
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            tools:text="4000원"
+            android:textSize="24sp"
+            android:textColor="@color/coffee_dark_brown"
+            android:fontFamily="@font/eland_choice_m"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_qty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            tools:text="2잔"
+            android:textSize="24sp"
+            android:textColor="@color/coffee_dark_brown"
+            android:fontFamily="@font/eland_choice_m"/>
+
+        <TextView
+            android:id="@+id/tv_total_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            tools:text="8000원"
+            android:textSize="24sp"
+            android:textColor="@color/coffee_dark_brown"
+            android:fontFamily="@font/eland_choice_m"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/indicator"
+        android:text="X"/>
+
+</LinearLayout>

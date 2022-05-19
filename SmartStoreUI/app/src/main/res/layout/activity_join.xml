@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".JoinActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="200sp"
+        android:layout_height="200sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100sp"
+        android:src="@drawable/logo"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="40sp"
+
+        android:text="Join"
+        android:textSize="50dp"
+        android:textColor="@color/coffee_dark_brown"
+        android:fontFamily="@font/eland_choice_b"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:layout_marginBottom="10sp"
+            android:layout_marginLeft="30sp"
+            android:layout_marginRight="10sp"
+
+            android:textColor="@color/coffee_dark_brown"
+            android:fontFamily="@font/eland_choice_m"
+            android:textColorHint="@color/coffee_light_gray"
+            android:background="@drawable/textview_regular"
+            android:hint="아이디를 입력하세요."
+            />
+
+        <ImageButton
+            android:id="@+id/imgbtn_check_id"
+            android:layout_width="60sp"
+            android:layout_height="40sp"
+            android:layout_weight="1"
+            android:layout_marginRight="30sp"
+            android:background="@drawable/button_regular"
+            android:src="@drawable/check_mark"
+            android:scaleType="fitXY"
+            android:onClick="checkId"/>
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/et_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10sp"
+        android:layout_marginLeft="30sp"
+        android:layout_marginRight="30sp"
+
+        android:fontFamily="@font/eland_choice_m"
+        android:textColorHint="@color/coffee_light_gray"
+        android:background="@drawable/textview_regular"
+        android:hint="비밀번호를 입력하세요."
+        android:textColor="@color/coffee_dark_brown"
+
+        />
+
+    <EditText
+        android:id="@+id/et_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30sp"
+        android:layout_marginRight="30sp"
+
+        android:textColor="@color/coffee_dark_brown"
+        android:textColorHint="@color/coffee_light_gray"
+        android:fontFamily="@font/eland_choice_m"
+        android:background="@drawable/textview_regular"
+        android:hint="별명을 입력하세요"/>
+
+
+        <Button
+            android:id="@+id/btn_join"
+            android:layout_width="140sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10sp"
+            android:background="@drawable/button_regular"
+            android:text="Join"/>
+
+
+</LinearLayout>
