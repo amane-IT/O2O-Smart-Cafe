@@ -1,12 +1,13 @@
-package com.ssafy.smartstore
+package com.ssafy.smartstore.service
 
-import android.app.Notification
 import android.app.PendingIntent
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.ssafy.smartstore.MainActivity
+import com.ssafy.smartstore.R
 
 // Firebase에서 보낸 메시지를 받아서 Notification에 전달하는 서비스
 class MyFirebaseMsgService : FirebaseMessagingService() {

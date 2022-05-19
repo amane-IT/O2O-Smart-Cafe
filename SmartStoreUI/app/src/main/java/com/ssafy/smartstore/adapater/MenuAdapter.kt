@@ -1,4 +1,4 @@
-package com.ssafy.smartstore
+package com.ssafy.smartstore.adapater
 
 import android.content.Context
 import android.util.Log
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.ssafy.smartstore.R
 import com.ssafy.smartstore.dto.Product
 
 class MenuAdapter(private val context: Context): RecyclerView.Adapter<MenuAdapter.MenuViewHolder>() {

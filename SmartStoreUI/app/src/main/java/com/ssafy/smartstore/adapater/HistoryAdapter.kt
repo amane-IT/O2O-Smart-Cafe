@@ -1,4 +1,4 @@
-package com.ssafy.smartstore
+package com.ssafy.smartstore.adapater
 
 import android.content.Context
 import android.util.Log
@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.ssafy.smartstore.R
 import com.ssafy.smartstore.dto.OrderMap
 import java.text.DecimalFormat
 

@@ -59,4 +59,9 @@ public class UserServiceImpl implements UserService {
 	public boolean isUsedId(String id) {
 		return userDao.select(id) != null;
 	}
+
+	@Override
+	public int updateStamp(User user) {
+		return userDao.updateStamp(user);
+	}
 }

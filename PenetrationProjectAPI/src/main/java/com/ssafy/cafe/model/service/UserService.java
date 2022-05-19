@@ -43,5 +43,7 @@ public interface UserService {
      * @return
      */
     public boolean isUsedId(String id);
+    
+    public int updateStamp(User user);
 
 }

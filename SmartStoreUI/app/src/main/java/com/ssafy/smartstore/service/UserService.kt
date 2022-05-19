@@ -25,4 +25,7 @@ interface UserService {
     @POST("/user/login")
     fun login(@Body user : User) : Call<User>
 
+    @GET("user/updateStatus")
+    fun updateStatus(@Query("id") id : String) : Call<Map<String, Object>>
+
 }

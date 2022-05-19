@@ -1,6 +1,7 @@
 package com.ssafy.smartstore
 
 import android.app.Application
+import com.ssafy.smartstore.dto.Grade
 import okhttp3.JavaNetCookieJar
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
@@ -29,11 +30,14 @@ class IntentApplication: Application() {
             .addConverterFactory(nullOnEmptyConverterFactory)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+
+        grade = Grade("", 0, 0, "")
     }
 
     companion object{
         lateinit var retrofit: Retrofit
         lateinit var client: OkHttpClient
+        lateinit var grade: Grade
         var cntTmp = 0
     }
 

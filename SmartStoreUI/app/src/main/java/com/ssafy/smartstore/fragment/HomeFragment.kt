@@ -1,4 +1,4 @@
-package com.ssafy.smartstore
+package com.ssafy.smartstore.fragment
 
 import android.content.Context
 import android.content.Intent
@@ -10,6 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ssafy.smartstore.IntentApplication
+import com.ssafy.smartstore.OrderDetailActivity
+import com.ssafy.smartstore.R
+import com.ssafy.smartstore.adapater.HistoryAdapter
+import com.ssafy.smartstore.adapater.NoticeAdapter
 import com.ssafy.smartstore.databinding.FragmentHomeBinding
 import com.ssafy.smartstore.dto.OrderMap
 import com.ssafy.smartstore.service.OrderService
@@ -17,9 +22,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class HomeFragment : Fragment() {
 

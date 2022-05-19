@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.google.gson.Gson
 import com.ssafy.smartstore.dto.User
 import com.ssafy.smartstore.databinding.ActivityLoginBinding
+import com.ssafy.smartstore.dto.Grade
 import com.ssafy.smartstore.service.UserService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -60,19 +61,6 @@ class LoginActivity : AppCompatActivity() {
                 // DB를 통해 해당 값으로 조회된 User 객체를 조회하고 반환 (id가 없으면 반환 X, 반환 받고는 비밀번호가 맞는지까지 체크)
                 // 1 = 회원인 ID, 2 = 회원이 아닌 ID, 3 = 통신 실패
                 var isJoin = checkID()
-//                userService.isLogin(id).enqueue(object : Callback<Boolean> {
-//                    override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
-//                        if(response.code() == 200){
-//                            if(response.body() == false)
-//                                isJoin = 2
-//                        }
-//                    }
-//                    override fun onFailure(call: Call<Boolean>, t: Throwable) {
-//                        isJoin = 3
-//                        Log.d(TAG, "onFailure: 통신 실패1, ${t.message}")
-//                    }
-//                })
-
                 CoroutineScope(Dispatchers.Main).launch {
                     if (isJoin == 2) {
                         Toast.makeText(this@LoginActivity, "없는 ID입니다!!!!", Toast.LENGTH_SHORT).show()
@@ -90,6 +78,7 @@ class LoginActivity : AppCompatActivity() {
                                     val res = response.body() ?: mutableMapOf()
                                     val gson = Gson()
                                     val result = gson.fromJson(response.body()!!.get("user").toString(), User::class.java)
+                                    val level = gson.fromJson(response.body()!!.get("grade").toString(), Grade::class.java)
                                     Log.d(TAG, "onResponse: ${result}")
                                     // result의 비번과 입력한 비번이 맞을 경우
                                     if (result.pass.equals(pwd)) {
@@ -100,6 +89,9 @@ class LoginActivity : AppCompatActivity() {
                                         ).show()
                                         // 정보가 모두 올바르다면 Shared Preference로 User 정보 저장 후, MainActivity 실행
                                         setPreference(result)
+
+                                        // grade 정보 저장
+                                        IntentApplication.grade = level
 
                                         // login api를 사용한다면 여기에 추가하기
 

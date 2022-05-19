@@ -33,4 +33,11 @@ public class User {
 		this.name = name;
 		this.pass = pass;
 	}
+	
+	public User(String id, String name, Integer stamps) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.stamps = stamps;
+	}
 }

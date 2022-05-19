@@ -5,7 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ssafy.smartstore.databases.Shopping
+import com.ssafy.smartstore.adapater.ItemAdapter
+import com.ssafy.smartstore.fragment.Shopping
 import com.ssafy.smartstore.databinding.ActivityOrderDetailBinding
 import com.ssafy.smartstore.service.OrderService
 import kotlinx.coroutines.CoroutineScope

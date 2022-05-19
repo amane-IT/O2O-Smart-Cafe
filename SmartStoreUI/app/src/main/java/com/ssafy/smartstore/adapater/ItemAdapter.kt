@@ -1,4 +1,4 @@
-package com.ssafy.smartstore
+package com.ssafy.smartstore.adapater
 
 import android.content.Context
 import android.util.Log
@@ -9,7 +9,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.ssafy.smartstore.databases.Shopping
+import com.ssafy.smartstore.R
+import com.ssafy.smartstore.fragment.Shopping
 
 class ItemAdapter(val context: Context ): RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
     var objects: List<Shopping> = emptyList()

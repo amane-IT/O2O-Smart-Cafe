@@ -1,4 +1,4 @@
-package com.ssafy.smartstore
+package com.ssafy.smartstore.fragment
 
 import android.content.Context
 import android.content.Intent
@@ -10,13 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ssafy.smartstore.IntentApplication
+import com.ssafy.smartstore.OrderDetailActivity
+import com.ssafy.smartstore.adapater.HistoryAdapter
 import com.ssafy.smartstore.databinding.FragmentMyPageBinding
 import com.ssafy.smartstore.dto.OrderMap
 import com.ssafy.smartstore.service.OrderService
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class MyPageFragment : Fragment() {
 
@@ -28,10 +28,6 @@ class MyPageFragment : Fragment() {
         ctx = context
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,6 +37,34 @@ class MyPageFragment : Fragment() {
             val prefs = activity?.getSharedPreferences("prefs", AppCompatActivity.MODE_PRIVATE)
 
             tvNickname.text = prefs!!.getString("name", "정보 없음")
+
+            // 스탬프 관련 UI 변경
+            var level = IntentApplication.grade
+            val resId = ctx.resources.getIdentifier("${level.img.substring(0, level.img.length - 4)}", "drawable", ctx.packageName)
+            stampImg.setImageResource(resId)
+
+            tvStamp.text = "${level.title} ${level.step}단계"
+
+            if(level.title.equals("씨앗"))
+                stampProgress.max = 10
+            else if (level.title.equals("꽃"))
+                stampProgress.max = 15
+            else if (level.title.equals("열매"))
+                stampProgress.max = 20
+            else if (level.title.equals("커피콩"))
+                stampProgress.max = 25
+            else {
+                stampProgress.max = 100
+                stampProgress.progress = 100
+                statusProgress.text = "☆ 나무입니다 ☆"
+                tvRemain.text = "다 모았습니다."
+            }
+
+            if(!level.title.equals("나무")){
+                stampProgress.progress = stampProgress.max - level.to
+                statusProgress.text = "${stampProgress.progress}/${stampProgress.max}"
+                tvRemain.text = "다음 레벨까지 앞으로 ${level.to}잔 남았습니다."
+            }
 
             // 로그 아웃 버튼 클릭 시, 로그인 화면으로 & Shared Preference
             imgLogout.setOnClickListener {
@@ -120,8 +144,4 @@ class MyPageFragment : Fragment() {
             list
         }
     }
-
-//    suspend fun getId(user_id: String): MutableList<Int>{
-//        return repo.getId(user_id)
-//    }
 }

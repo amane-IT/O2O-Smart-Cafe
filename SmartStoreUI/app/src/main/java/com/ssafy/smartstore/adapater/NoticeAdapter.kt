@@ -1,4 +1,4 @@
-package com.ssafy.smartstore
+package com.ssafy.smartstore.adapater
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.ssafy.smartstore.R
 
 class NoticeAdapter(val context: Context, val resource: Int, val objects: MutableList<String>): RecyclerView.Adapter<NoticeAdapter.NoticeViewHolder>() {
 

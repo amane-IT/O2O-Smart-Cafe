@@ -11,16 +11,16 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ssafy.smartstore.dto.Order
-import com.ssafy.smartstore.dto.OrderDetail
-import com.ssafy.smartstore.dto.Product
-import com.ssafy.smartstore.databases.Shopping
+import com.google.gson.Gson
+import com.ssafy.smartstore.adapater.ItemAdapter
+import com.ssafy.smartstore.fragment.Shopping
 import com.ssafy.smartstore.databinding.ActivityShoppingListBinding
+import com.ssafy.smartstore.dto.*
 import com.ssafy.smartstore.service.OrderService
+import com.ssafy.smartstore.service.UserService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.text.DateFormat
 import java.text.SimpleDateFormat
 
 // F06: 주문 관리 - 상품 주문 - 로그인한 사용자는 상품 상세 화면 에서 n개를 선정하여 장바구니에 등록할 수 있다. 로그인 한 사용자만 자기의 계정으로 구매를 처리할 수 있다.
@@ -31,6 +31,7 @@ class ShoppingListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityShoppingListBinding
     private val orderService = IntentApplication.retrofit.create(OrderService::class.java)
+    private val userService = IntentApplication.retrofit.create(UserService::class.java)
 
     private lateinit var adapter: ItemAdapter
     private val shoppingList : MutableList<Shopping> = mutableListOf()
@@ -193,6 +194,7 @@ class ShoppingListActivity : AppCompatActivity() {
         val user = getSharedPreferences("prefs", MODE_PRIVATE)
         val userId = user.getString("id", "").toString()
         val detailList = mutableListOf<OrderDetail>()
+        var totalCnt = 0
 
         for(i in 0 until IntentApplication.cntTmp){
             val detail = getSharedPreferences("item${i}", MODE_PRIVATE)
@@ -201,6 +203,8 @@ class ShoppingListActivity : AppCompatActivity() {
                 Log.d(TAG, "order: ${System.currentTimeMillis()} , $userId")
                 Log.d(TAG, "order: ${detail.getInt("p_id", -1)}")
                 Log.d(TAG, "order: ${detail.getInt("cnt", -1)}")
+
+                totalCnt += detail.getInt("cnt", 0)
 
                 detailList.add(OrderDetail(0, detail.getInt("p_id", -1), detail.getInt("cnt", -1)))
             }
@@ -226,6 +230,8 @@ class ShoppingListActivity : AppCompatActivity() {
                 val time = SimpleDateFormat("yyyy.MM.dd").format(System.currentTimeMillis())
                 val order = Order(userId, order_table, time, 'N', detailList)
                 val insertId = insertOrder(order)
+                val updateStamp = updateStatus(userId)
+                Log.d(TAG, "order: ${updateStamp}")
 
                 if(insertId != -1){
                     for(i in 0 until IntentApplication.cntTmp) {
@@ -238,7 +244,12 @@ class ShoppingListActivity : AppCompatActivity() {
 
                     this.launch(Dispatchers.Main) {
                         val intent = Intent(this@ShoppingListActivity, MainActivity::class.java)
-                        Toast.makeText(this@ShoppingListActivity, "주문이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                        if(updateStamp == 1)
+                            Toast.makeText(this@ShoppingListActivity, "주문이 완료되었습니다. \n" +
+                                    " 스탬프가 ${totalCnt}개 적립되었습니다.", Toast.LENGTH_SHORT).show()
+                        else
+                            Toast.makeText(this@ShoppingListActivity, "주문이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+
                         startActivity(intent)
                         finish()
                     }
@@ -267,6 +278,25 @@ class ShoppingListActivity : AppCompatActivity() {
         } else
             -1
 
+        return result
+    }
+
+    // 스탬트 수 갱신 to Server
+    private fun updateStatus(id: String): Int{
+        val response = userService.updateStatus(id).execute()
+        val result = if(response.code() == 200){
+            var res = response.body()
+            if(res == null){
+                -1
+            } else{
+                val gson = Gson()
+                    val level = gson.fromJson(response.body()!!["grade"].toString(), Grade::class.java)
+                    Log.d(TAG, "updateStatus: ${level}")
+                    IntentApplication.grade = level
+                    1
+                }
+            } else
+                response.code()
         return result
     }
 

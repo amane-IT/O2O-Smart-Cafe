@@ -12,6 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -71,6 +72,8 @@ public class UserRestController {
 	@ApiOperation(value = "사용자의 정보와 함께 사용자의 주문 내역, 사용자 등급 정보를 반환한다.", response = Map.class)
 	public Map<String, Object> getInfo(String id) {
 		User selected = uService.info(id);
+		
+		System.out.println(id);
 		if (selected == null) {
 			return null;
 		}
@@ -84,6 +87,31 @@ public class UserRestController {
 			return info;
 		}
 	}
+	
+	/*
+	 * 스탬프 수 업데이트 코드 추가
+	 * */
+	
+	// android app 에서 사용자 정보 확인시 비밀번호 확인은 아닌것 같아 수정
+	@GetMapping("/updateStatus")
+	@ApiOperation(value = "사용자의 등급의 업데이트한다.", response = Map.class)
+	public Map<String, Object> getUpdateStatus(String id) {
+		User selected = uService.info(id);
+		
+		System.out.println(id);
+		if (selected == null) {
+			return null;
+		}
+		else {
+			Map<String, Object> info = new HashMap<>();
+			info.put("grade", getGrade(selected.getStamps()));
+			System.out.println("여기서 나감");
+			return info;
+		}
+	}
+	
+	
+	
 
 	public Map<String, Object> getGrade(Integer stamp) {
 		Map<String, Object> grade = new HashMap<>();

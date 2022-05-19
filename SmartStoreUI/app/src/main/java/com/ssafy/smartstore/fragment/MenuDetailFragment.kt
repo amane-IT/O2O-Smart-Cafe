@@ -1,4 +1,4 @@
-package com.ssafy.smartstore
+package com.ssafy.smartstore.fragment
 
 import android.content.Context
 import android.content.Intent
@@ -10,6 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
+import com.ssafy.smartstore.IntentApplication
+import com.ssafy.smartstore.MapActivity
+import com.ssafy.smartstore.OrderActivity
+import com.ssafy.smartstore.ShoppingListActivity
+import com.ssafy.smartstore.adapater.MenuAdapter
 import com.ssafy.smartstore.dto.Product
 import com.ssafy.smartstore.databinding.FragmentMenuDetailBinding
 import com.ssafy.smartstore.service.ProductService

@@ -1,4 +1,4 @@
-package com.ssafy.smartstore.databases
+package com.ssafy.smartstore.fragment
 
 import java.io.Serializable
 
