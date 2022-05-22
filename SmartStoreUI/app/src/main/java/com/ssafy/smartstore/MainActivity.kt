@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.RemoteException
 import android.util.Log
-import android.widget.Button
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -23,6 +22,7 @@ import androidx.navigation.ui.NavigationUI
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.ssafy.smartstore.databinding.ActivityMainBinding
+import com.ssafy.smartstore.dialog.CustomDialog
 import org.altbeacon.beacon.*
 
 private const val TAG = "HomeActivity_싸피"

@@ -20,5 +20,12 @@ public interface ProductService {
 	 * @return
 	 */
 	List<Map<String, Object>> selectWithComment(Integer productId);
+	
+	/**
+	 * update 후의 평점의 평균값을 반환
+	 * @param productId
+	 * @return
+	 * */
+	double selectAvgRating(Integer productId);
 
 }

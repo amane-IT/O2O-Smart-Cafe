@@ -10,7 +10,7 @@ data class ProductDetail(
     val img: String,
     val name: String,
     val price: Int,
-    val rating: Int,
+    val rating: Double,
     val sells: Int,
     val type: String,
     val userName: String,

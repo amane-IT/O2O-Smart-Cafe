@@ -1,9 +1,12 @@
 package com.ssafy.cafe.controller.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -23,6 +26,13 @@ public class CommentRestController {
 
 	@Autowired
 	CommentService cService;
+	
+	@GetMapping("/byProduct")
+	@ApiOperation(value = "productId에 해당하는 Comment의 목록을 Comment id의 내림차순으로 반환한다.", 
+				response = List.class)
+	public List<Comment> getComments(int p_id){
+		return cService.selectByProduct(p_id);
+	}
 
 	@PostMapping
 	@Transactional

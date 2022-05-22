@@ -51,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
         editor.commit()
     }
 
-    suspend fun login() {
+    fun login() {
         binding.apply {
             // 사용자에게 아이디와 비밀번호를 전달받는다.
             id = etId.text.toString()

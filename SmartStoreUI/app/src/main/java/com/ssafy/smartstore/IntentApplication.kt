@@ -2,6 +2,7 @@ package com.ssafy.smartstore
 
 import android.app.Application
 import com.ssafy.smartstore.dto.Grade
+import com.ssafy.smartstore.fragment.Shopping
 import okhttp3.JavaNetCookieJar
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
@@ -39,6 +40,8 @@ class IntentApplication: Application() {
         lateinit var client: OkHttpClient
         lateinit var grade: Grade
         var cntTmp = 0
+
+        val shoppingList : MutableList<Shopping> = mutableListOf()
     }
 
     val nullOnEmptyConverterFactory = object : Converter.Factory() {

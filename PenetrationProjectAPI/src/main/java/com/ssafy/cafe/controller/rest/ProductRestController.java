@@ -35,4 +35,9 @@ public class ProductRestController {
 	public List<Map<String, Object>> getProductWithComments(@PathVariable Integer productId) {
 		return pService.selectWithComment(productId);
 	}
+	
+	@GetMapping("/rating")
+	public double selectAvgRating(Integer productId) {
+		return pService.selectAvgRating(productId);
+	}
 }

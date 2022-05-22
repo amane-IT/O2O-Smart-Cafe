@@ -47,5 +47,9 @@
 		WHERE p.id = #{productId}
 		ORDER BY c.id DESC
 	</select>
+	
+	<select id="selectAvgRating" resultType="double" parameterType="int">
+		SELECT AVG(rating) FROM t_comment WHERE product_id = #{id}
+	</select>
 
 </mapper>

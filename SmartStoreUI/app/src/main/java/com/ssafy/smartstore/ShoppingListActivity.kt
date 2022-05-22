@@ -29,12 +29,20 @@ import java.text.SimpleDateFormat
 private const val TAG = "ShoppingListActivity_싸피"
 class ShoppingListActivity : AppCompatActivity() {
 
+    companion object{
+        var instance: ShoppingListActivity? = null
+        private var adapter: ItemAdapter? = null
+
+        fun getInstanceShopping(): ShoppingListActivity {
+            if(instance == null)
+                instance = ShoppingListActivity()
+            return instance!!
+        }
+    }
+
     private lateinit var binding: ActivityShoppingListBinding
     private val orderService = IntentApplication.retrofit.create(OrderService::class.java)
     private val userService = IntentApplication.retrofit.create(UserService::class.java)
-
-    private lateinit var adapter: ItemAdapter
-    private val shoppingList : MutableList<Shopping> = mutableListOf()
 
     private var total_price = 0
     private var total_cnt = 0
@@ -107,21 +115,16 @@ class ShoppingListActivity : AppCompatActivity() {
         // 삭제 버튼 클릭 시, 삭제
         val itemClickListener = object : ItemAdapter.OnItemClickListener{
             override fun onItemClick(view: View, position: Int) {
-                val remove = getSharedPreferences("item${position}", MODE_PRIVATE)
-                val editor = remove.edit()
-                total_cnt -= remove.getInt("cnt", 0)
-                total_price -= (remove.getInt("price", 0) * remove.getInt("cnt", 0))
-                editor.remove("cnt")
-                editor.commit()
+                total_cnt -= IntentApplication.shoppingList[position].quantity
+                total_price -= IntentApplication.shoppingList[position].quantity * IntentApplication.shoppingList[position].price
+                IntentApplication.shoppingList.removeAt(position)
                 Log.d(TAG, "onItemClick: $position")
-
                 getPreferences()
-                val adapter = ItemAdapter(this@ShoppingListActivity)
             }
         }
-        adapter.objects = shoppingList
+        adapter!!.objects = IntentApplication.shoppingList
         binding.listOrder.adapter = adapter
-        adapter.onItemClickListener = itemClickListener
+        adapter!!.onItemClickListener = itemClickListener
 
         // NFC foreground Mode
         nfcAdapter.enableForegroundDispatch(this, pIntent, filters, null)
@@ -150,43 +153,22 @@ class ShoppingListActivity : AppCompatActivity() {
         data = intent.getSerializableExtra("data") as Product
         cnt = intent.getIntExtra("qty", 0)
         //shoppingList.add(Shopping(data.img.substring(0, data.img.length - 4), data.name, data.price, cnt))
-        Log.d(TAG, "addPreference: ${System.currentTimeMillis()}")
-        val item = getSharedPreferences("item${IntentApplication.cntTmp++}", MODE_PRIVATE)
-        val editor = item.edit()
-        editor.putInt("p_id", data.id)
-        editor.putString("img", data.img.substring(0, data.img.length - 4))
-        editor.putString("name", data.name)
-        editor.putInt("price", data.price)
-        editor.putInt("cnt", cnt)
-        editor.commit()
-
-        getPreferences()
+        IntentApplication.shoppingList.add(Shopping(data.id, data.img.substring(0, data.img.length - 4), data.name, data.price, cnt))
+        adapter!!.notifyDataSetChanged()
     }
 
     // 장바구니 갱신
     private fun getPreferences(){
-        shoppingList.clear()
         total_price = 0
         total_cnt = 0
 
-        for(i in 0 until IntentApplication.cntTmp){
-            val productTmp = getSharedPreferences("item${i}", MODE_PRIVATE)
-
-            if(productTmp.getInt("cnt", 0) == 0) {
-                Log.d(TAG, "getPreferences: item${i} 제거")
-                continue
-            }
-
-            shoppingList.add(Shopping(  productTmp.getString("img", "").toString(),
-                productTmp.getString("name", "").toString(),
-                productTmp.getInt("price", 0),
-                productTmp.getInt("cnt", 0)))
-            Log.d(TAG, "getPreferences: ${productTmp.getString("name", "")}")
-            total_cnt += productTmp.getInt("cnt", 0)
-            total_price += (productTmp.getInt("price", 0) * productTmp.getInt("cnt", 0))
+        for(i in IntentApplication.shoppingList){
+            total_cnt += i.quantity
+            total_price += i.price * i.quantity
         }
         binding.tvQty.text = "총 ${total_cnt}개"
         binding.tvTotalPrice.text = "${total_price}원"
+        adapter!!.notifyDataSetChanged()
     }
 
     // 주문하기
@@ -196,18 +178,9 @@ class ShoppingListActivity : AppCompatActivity() {
         val detailList = mutableListOf<OrderDetail>()
         var totalCnt = 0
 
-        for(i in 0 until IntentApplication.cntTmp){
-            val detail = getSharedPreferences("item${i}", MODE_PRIVATE)
-            val editor = detail.edit()
-            if(detail.getInt("cnt", 0) != 0){
-                Log.d(TAG, "order: ${System.currentTimeMillis()} , $userId")
-                Log.d(TAG, "order: ${detail.getInt("p_id", -1)}")
-                Log.d(TAG, "order: ${detail.getInt("cnt", -1)}")
-
-                totalCnt += detail.getInt("cnt", 0)
-
-                detailList.add(OrderDetail(0, detail.getInt("p_id", -1), detail.getInt("cnt", -1)))
-            }
+        for(i in IntentApplication.shoppingList){
+            totalCnt += i.quantity
+            detailList.add(OrderDetail(0, i.id, i.quantity))
         }
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -290,13 +263,13 @@ class ShoppingListActivity : AppCompatActivity() {
                 -1
             } else{
                 val gson = Gson()
-                    val level = gson.fromJson(response.body()!!["grade"].toString(), Grade::class.java)
-                    Log.d(TAG, "updateStatus: ${level}")
-                    IntentApplication.grade = level
-                    1
-                }
-            } else
-                response.code()
+                val level = gson.fromJson(response.body()!!["grade"].toString(), Grade::class.java)
+                Log.d(TAG, "updateStatus: ${level}")
+                IntentApplication.grade = level
+                1
+            }
+        } else
+            response.code()
         return result
     }
 

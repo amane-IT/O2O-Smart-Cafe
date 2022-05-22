@@ -11,6 +11,7 @@ import com.ssafy.cafe.model.dto.Product;
 
 @Service
 public class ProductServiceImpl implements ProductService {
+	
 
 	@Autowired
 	private ProductDao pDao;
@@ -23,6 +24,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Map<String, Object>> selectWithComment(Integer productId) {
 		return pDao.selectWithComment(productId);
+	}
+
+	@Override
+	public double selectAvgRating(Integer productId) {
+		return pDao.selectAvgRating(productId);
 	}
 
 }
