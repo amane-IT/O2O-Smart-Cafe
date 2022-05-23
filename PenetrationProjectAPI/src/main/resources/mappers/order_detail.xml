@@ -30,4 +30,11 @@
 		<result column="quantity" property="quantity"/>
 	</resultMap>
 	
+	<select id="selectTop3" resultType="int">
+		SELECT product_id FROM t_order_detail
+		group by product_id
+		order by SUM(quantity) desc limit 3
+		
+	</select>
+	
 </mapper>

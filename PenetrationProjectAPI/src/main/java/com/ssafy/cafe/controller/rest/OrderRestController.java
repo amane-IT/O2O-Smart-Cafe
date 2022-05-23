@@ -48,4 +48,12 @@ public class OrderRestController {
 		return oService.getLastMonthOrder(id);
 	}
 	
+	@GetMapping()
+	@ApiOperation(value = "전체 메뉴 중 가장 인기가 많은 메뉴 top 3를 반환한다.", response = List.class)
+	public List<Integer> getTop3() {
+		return oService.selectTop3();
+	}
+	
+	
+	
 }

@@ -13,5 +13,7 @@ public interface OrderDetailDao {
 	OrderDetail select(Integer detailId);
 
 	List<OrderDetail> selectAll();
+	
+	List<Integer> selectTop3();
 
 }

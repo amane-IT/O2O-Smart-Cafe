@@ -79,4 +79,11 @@ public class OrderServiceImpl implements OrderService {
 		return oDao.getLastMonthOrder(id);
 	}
 
+	@Override
+	public List<Integer> selectTop3() {
+		return dDao.selectTop3();
+	}
+	
+	
+
 }

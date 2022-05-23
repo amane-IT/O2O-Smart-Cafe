@@ -1,11 +1,13 @@
 package com.ssafy.smartstore.adapater
 
 import android.content.Context
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ssafy.smartstore.R
@@ -14,10 +16,12 @@ import com.ssafy.smartstore.dto.Product
 class MenuAdapter(private val context: Context): RecyclerView.Adapter<MenuAdapter.MenuViewHolder>() {
 
     var listData: List<Product> = emptyList()
+    var topList: List<Int> = emptyList()
 
     inner class MenuViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val item = itemView.findViewById<ImageButton>(R.id.btn_menu_item)
         val item_name= itemView.findViewById<TextView>(R.id.tv_name)
+        val top = itemView.findViewById<ImageView>(R.id.is_best)
 
         fun bindOnItemClickListener(onItemClickListener: OnItemClickListener) {
             item.setOnClickListener {
@@ -48,6 +52,16 @@ class MenuAdapter(private val context: Context): RecyclerView.Adapter<MenuAdapte
             val resId = context.resources.getIdentifier("${dto.img.substring(0, dto.img.length - 4)}", "drawable", context.packageName)
             item.setImageResource(resId)
             item_name.text = dto.name
+
+            if(topList.contains(dto.id)){
+                if(topList.indexOf(dto.id) == 0){
+                    top.setImageResource(context.resources.getIdentifier("gold", "drawable", context.packageName))
+                } else if(topList.indexOf(dto.id) == 1){
+                    top.setImageResource(context.resources.getIdentifier("silver", "drawable", context.packageName))
+                } else{
+                    top.setImageResource(context.resources.getIdentifier("bronze", "drawable", context.packageName))
+                }
+            }
         }
         holder.bindOnItemClickListener(onItemClickListener)
     }

@@ -17,4 +17,8 @@ interface OrderService {
     // id에 해당하는 사용자의 최근 1개월간 주문 내역 반환 (반환 정보는 1차 주문번호 내림차순, 2차 주문 상세 내림차순)
     @GET("order/byUser")
     fun getLastMonthOrders(@Query("id") id: String): Call<List<OrderMap>>
+
+    // 전체 인기메뉴 top 3를 반환
+    @GET("order")
+    fun getTop3(): Call<List<Int>>
 }

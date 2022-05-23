@@ -20,6 +20,7 @@ import com.ssafy.smartstore.dto.Product
 import com.ssafy.smartstore.databinding.FragmentMenuDetailBinding
 import com.ssafy.smartstore.dto.Favorite
 import com.ssafy.smartstore.service.FavoriteService
+import com.ssafy.smartstore.service.OrderService
 import com.ssafy.smartstore.service.ProductService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -38,7 +39,9 @@ class MenuDetailFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         ctx = context
+        initAdapter()
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +49,6 @@ class MenuDetailFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return FragmentMenuDetailBinding.inflate(inflater, container, false).apply {
-            initAdapter()
             listMenu.apply {
                 layoutManager = GridLayoutManager(ctx, 3)
                 adapter = menuAdapter
@@ -84,6 +86,15 @@ class MenuDetailFragment : Fragment() {
         menuAdapter = MenuAdapter(ctx)
         getData()
         getFavorite()
+        getTop3()
+        menuAdapter.notifyDataSetChanged()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        menuAdapter.notifyDataSetChanged()
+
     }
 
     private fun getData() {
@@ -95,11 +106,9 @@ class MenuDetailFragment : Fragment() {
                     menuAdapter.listData = emptyList()
                     if (res != null) {
                         menuAdapter.listData = res
-                    }
-                    else {
+                    } else {
                         Toast.makeText(activity, "상품 정보를 가져올 수 없음!", Toast.LENGTH_SHORT).show()
                     }
-                    menuAdapter.notifyDataSetChanged()
                 }
             }
 
@@ -122,7 +131,30 @@ class MenuDetailFragment : Fragment() {
         }
     }
 
-    companion object {
+    private fun getTop3(){
+        val oService = IntentApplication.retrofit.create(OrderService::class.java)
+        oService.getTop3().enqueue(object : Callback<List<Int>> {
+            override fun onResponse(call: Call<List<Int>>, response: Response<List<Int>>) {
+                val res = response.body()
+                if (response.code() == 200) {
+                    if(res != null){
+                        menuAdapter.topList = emptyList()
+                        menuAdapter.topList = res
+                        Log.d("TAG", "getTop3: data change start")
+                        menuAdapter.notifyDataSetChanged()
+                        Log.d("TAG", "getTop3: data change end")
+                    }
+                    else {
+                        CoroutineScope(Dispatchers.Main).launch{
+                            Toast.makeText(activity, "TOP 정보를 가져올 수 없음!", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
 
+            override fun onFailure(call: Call<List<Int>>, t: Throwable) {
+                Log.d("TAG", "onFailure: 통신 오류!")
+            }
+        })
     }
 }

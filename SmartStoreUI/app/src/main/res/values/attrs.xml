@@ -25,8 +25,4 @@
         <attr name="backColor" format="color"/>
     </declare-styleable>
 
-    <declare-styleable name="BottomNavigationView">
-
-    </declare-styleable>
-
 </resources>
