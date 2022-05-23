@@ -23,9 +23,9 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu"
-        app:backgroundTint="@color/coffee_brown"
         app:itemIconTint="@color/coffee_light_white"
-        app:labelVisibilityMode="labeled" />
+        app:labelVisibilityMode="labeled"
+        android:background="?attr/backColor"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

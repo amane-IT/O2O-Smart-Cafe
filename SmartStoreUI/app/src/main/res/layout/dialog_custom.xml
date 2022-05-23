@@ -27,7 +27,6 @@
         android:layout_margin="16dp"
         android:text="이용 알림"
         android:textSize="32sp"
-        android:textColor="@color/coffee_dark_brown"
         android:textStyle="bold"/>
 
     <TextView
@@ -43,8 +42,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:backgroundTint="@color/coffee_brown"
+        android:backgroundTint="?attr/btnBackgroundTint_user"
         android:text="확인"
-        android:textSize="24sp"/>
+        android:textSize="24sp"
+        android:textColor="?attr/btnTextColor_user"/>
 
 </LinearLayout>

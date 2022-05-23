@@ -22,7 +22,6 @@
             android:layout_marginEnd="16dp"
             android:gravity="right"
             tools:text="매장 위치 정보 알아보기 ->"
-            android:textColor="@color/coffee_dark_brown"
             android:textSize="20sp"/>
 
         <Button
@@ -37,8 +36,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MENU"
-        android:textSize="30sp"
-        android:textColor="@color/coffee_point_red"/>
+
+        android:textColor="?attr/txtColor"
+        android:textSize="?attr/txtSize"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_menu"
@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/shopping_cart"
-        android:backgroundTint="@color/coffee_point_red"
+        android:backgroundTint="?attr/txtColor"
         android:layout_gravity="right"/>
 
 </LinearLayout>

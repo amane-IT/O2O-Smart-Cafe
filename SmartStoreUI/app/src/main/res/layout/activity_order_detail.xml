@@ -11,8 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="주문상세"
-        android:textColor="@color/coffee_point_red"
-        android:textSize="30sp"/>
+
+        android:textColor="?attr/txtColor"
+        android:textSize="?attr/txtSize"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +27,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="주문완료"
-            android:textColor="@color/coffee_dark_brown"
             android:textSize="15sp"/>
 
         <TextView
@@ -34,7 +34,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="2021.05.01"
-            android:textColor="@color/coffee_dark_brown"
             android:textSize="15sp"/>
 
         <TextView
@@ -42,7 +41,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="12,500원"
-            android:textColor="@color/coffee_dark_brown"
             android:textSize="15sp"/>
 
     </LinearLayout>

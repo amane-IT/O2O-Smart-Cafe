@@ -27,9 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="아메리카노"
-            android:textSize="24sp"
-            android:textColor="@color/coffee_dark_brown"
-            android:fontFamily="@font/eland_choice_m"/>
+            android:textSize="24sp"/>
 
         <TextView
             android:id="@+id/tv_price"
@@ -38,7 +36,6 @@
             android:layout_marginTop="10dp"
             tools:text="4000원"
             android:textSize="24sp"
-            android:textColor="@color/coffee_dark_brown"
             android:fontFamily="@font/eland_choice_m"/>
     </LinearLayout>
 
@@ -56,7 +53,6 @@
             android:gravity="center"
             tools:text="2잔"
             android:textSize="24sp"
-            android:textColor="@color/coffee_dark_brown"
             android:fontFamily="@font/eland_choice_m"/>
 
         <TextView
@@ -67,7 +63,6 @@
             android:layout_marginTop="10dp"
             tools:text="8000원"
             android:textSize="24sp"
-            android:textColor="@color/coffee_dark_brown"
             android:fontFamily="@font/eland_choice_m"/>
     </LinearLayout>
 
@@ -76,6 +71,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="@drawable/indicator"
+        android:textColor="@color/white"
         android:text="X"/>
 
 </LinearLayout>

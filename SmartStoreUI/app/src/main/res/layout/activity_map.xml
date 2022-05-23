@@ -18,8 +18,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Map"
-            android:textSize="32sp"
-            android:textColor="@color/coffee_point_red"/>
+
+            android:textColor="?attr/txtColor"
+            android:textSize="?attr/txtSize"/>
 
         <TextView
             android:id="@+id/tv_dist"
@@ -27,8 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="카페까지의 거리를 반환받지 못했어요."
-            android:textSize="16sp"
-            android:textColor="@color/coffee_dark_brown"/>
+            android:textSize="16sp"/>
 
     </LinearLayout>
 

@@ -13,8 +13,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.ssafy.smartstore.adapater.ItemAdapter
-import com.ssafy.smartstore.fragment.Shopping
 import com.ssafy.smartstore.databinding.ActivityShoppingListBinding
+import com.ssafy.smartstore.fragment.Shopping
 import com.ssafy.smartstore.dto.*
 import com.ssafy.smartstore.service.OrderService
 import com.ssafy.smartstore.service.UserService
@@ -65,6 +65,16 @@ class ShoppingListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate: ")
+        val theme = getSharedPreferences("theme", MODE_PRIVATE)
+        val themeId = theme.getInt("id", 1)
+
+        if(themeId == 1){
+            setTheme(R.style.AppTheme)
+        } else if(themeId == 2){
+            setTheme(R.style.AppTheme_Green)
+        } else {
+            setTheme(R.style.AppTheme_YB)
+        }
 
         binding = ActivityShoppingListBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -95,6 +105,7 @@ class ShoppingListActivity : AppCompatActivity() {
 
         binding.listOrder.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         adapter = ItemAdapter(this)
+        binding.listOrder.adapter = adapter
 
         binding.btnOrder.setOnClickListener {
             order()
@@ -129,7 +140,6 @@ class ShoppingListActivity : AppCompatActivity() {
             }
         }
         adapter!!.objects = IntentApplication.shoppingList
-        binding.listOrder.adapter = adapter
         adapter!!.onItemClickListener = itemClickListener
 
         // NFC foreground Mode
@@ -159,6 +169,7 @@ class ShoppingListActivity : AppCompatActivity() {
         data = intent.getSerializableExtra("data") as Product
         cnt = intent.getIntExtra("qty", 0)
         //shoppingList.add(Shopping(data.img.substring(0, data.img.length - 4), data.name, data.price, cnt))
+        Log.d(TAG, data.img.substring(0, data.img.length - 4))
         IntentApplication.shoppingList.add(Shopping(data.id, data.img.substring(0, data.img.length - 4), data.name, data.price, cnt))
         adapter!!.notifyDataSetChanged()
     }
@@ -174,7 +185,7 @@ class ShoppingListActivity : AppCompatActivity() {
         }
         binding.tvQty.text = "총 ${total_cnt}개"
         binding.tvTotalPrice.text = "${total_price}원"
-        adapter!!.notifyDataSetChanged()
+        adapter?.notifyDataSetChanged()
     }
 
     // 주문하기

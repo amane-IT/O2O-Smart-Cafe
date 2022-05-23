@@ -29,7 +29,6 @@
             android:layout_height="wrap_content"
             tools:text="아메리카노"
             android:textSize="40sp"
-            android:textColor="@color/coffee_dark_brown"
             android:layout_marginBottom="10sp"/>
 
         <LinearLayout
@@ -43,7 +42,6 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="가격"
-                android:textColor="@color/coffee_dark_brown"
                 android:textSize="30sp"/>
 
             <TextView
@@ -52,8 +50,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
                 tools:text="4,000원"
-                android:fontFamily="@font/eland_choice_l"
-                android:textColor="@color/coffee_brown"/>
+                android:fontFamily="@font/eland_choice_l"/>
         </LinearLayout>
 
         <LinearLayout
@@ -67,7 +64,6 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="수량"
-                android:textColor="@color/coffee_dark_brown"
                 android:textSize="30sp"/>
 
             <Button
@@ -75,9 +71,10 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:background="@drawable/minus"
-                android:backgroundTint="@color/coffee_point_red"
                 android:layout_margin="5dp"
-                android:onClick="minus"/>
+                android:onClick="minus"
+
+                android:backgroundTint="?attr/btnBackgroundTint_order"/>
 
             <TextView
                 android:id="@+id/tv_count"
@@ -93,9 +90,10 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:background="@drawable/add"
-                android:backgroundTint="@color/coffee_point_red"
                 android:layout_marginLeft="5dp"
-                android:onClick="add"/>
+                android:onClick="add"
+
+                android:backgroundTint="?attr/btnBackgroundTint_order"/>
 
         </LinearLayout>
     </LinearLayout>
@@ -106,7 +104,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/info_layout"
-        android:background="@color/coffee_menu_back">
+        android:background="?attr/btnBackground_order">
 
         <TextView
             android:layout_width="wrap_content"
@@ -141,8 +139,6 @@
             android:max="10"
             android:stepSize="0.2"
             android:isIndicator="true"
-            android:progressTint="@color/coffee_point_red"
-            android:progressBackgroundTint="@color/coffee_light_gray"
             style="?android:attr/ratingBarStyleIndicator"
             />
 
@@ -160,15 +156,18 @@
             android:id="@+id/ed_comment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/coffee_dark_brown"
+            android:layout_weight="1"
+
             android:background="@drawable/textview_regular"
-            android:layout_weight="1"/>
+            android:textColor="?attr/edColor"
+            android:textColorHint="?attr/edColorHint"
+            android:fontFamily="?attr/edFontFamily"/>
+
         <Button
             android:id="@+id/btn_comment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-            android:textColor="@color/coffee_brown"
             android:background="@drawable/button_color"
             android:text="등록"/>
     </LinearLayout>
@@ -186,8 +185,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/comment_list"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:backgroundTint="@color/coffee_point_red"
         android:text="담기"
-        android:onClick="goList" />
+        android:onClick="goList"
+
+        android:backgroundTint="?attr/btnBackgroundTint_order"
+        android:textColor="?attr/btnTextColor_order"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

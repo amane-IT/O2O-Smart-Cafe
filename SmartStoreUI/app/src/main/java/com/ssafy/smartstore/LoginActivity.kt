@@ -32,12 +32,32 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val theme = getSharedPreferences("theme", MODE_PRIVATE)
+        val themeId = theme.getInt("id", 1)
+
+        if(themeId == 1){
+            setTheme(R.style.AppTheme)
+        } else if(themeId == 2){
+            setTheme(R.style.AppTheme_Green)
+        } else {
+            setTheme(R.style.AppTheme_YB)
+        }
+
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        getPreference()
         binding.btnLogin.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 login()
             }
+        }
+    }
+
+    private fun getPreference(){
+        val prefs = getSharedPreferences("prefs", MODE_PRIVATE)
+        if(!prefs!!.getString("name", "정보 없음").equals("정보 없음")){
+            binding.etId.setText(prefs!!.getString("id", ""))
+            binding.etPwd.setText(prefs!!.getString("pwd", ""))
         }
     }
 
@@ -68,7 +88,6 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this@LoginActivity, "통신 실패했습니다.", Toast.LENGTH_SHORT).show()
                     }
                     else {
-
                         userService.getUserInfo(id).enqueue(object : Callback<Map<String, Object>> {
                             override fun onResponse(
                                 call: Call<Map<String, Object>>,
@@ -122,7 +141,10 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
             else {
-                Toast.makeText(this@LoginActivity, "ID와 비밀번호를 모두 채워주세요.", Toast.LENGTH_SHORT).show()
+                CoroutineScope(Dispatchers.Main).launch {
+                    Toast.makeText(this@LoginActivity, "ID와 비밀번호를 모두 채워주세요.", Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
         }
     }

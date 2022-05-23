@@ -24,6 +24,7 @@ class ItemAdapter(val context: Context ): RecyclerView.Adapter<ItemAdapter.ItemV
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.apply {
+            Log.d("TAG", "onBindViewHolder: ${objects[position].img.substring(0, objects[position].img.length - 4)}")
             val resId = context.resources.getIdentifier("${objects[position].img.substring(0, objects[position].img.length - 4)}", "drawable", context.packageName)
             img.setImageResource(resId)
             name.text = objects[position].name

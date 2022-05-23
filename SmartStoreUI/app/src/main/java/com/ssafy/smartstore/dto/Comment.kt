@@ -8,6 +8,7 @@ data class Comment(
     var rating: Double,
     var comment: String,
 ): Serializable{
+
     var id: Int = 0
 
     constructor(id: Int, productId: Int, userId: String, rating: Double, comment: String): this(productId, userId, rating, comment){

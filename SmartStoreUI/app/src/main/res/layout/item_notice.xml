@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="오늘 적합한 스탬프의 개수는 5개 입니다."
-        android:textColor="@color/coffee_brown"
+        android:textColor="?attr/etcColor"
         android:textSize="18sp"
         android:layout_weight="1"/>
 
@@ -19,6 +19,6 @@
         android:layout_height="20dp"
         android:background="@drawable/indicator"
         android:text="X"
-        android:textColor="@color/coffee_brown"/>
+        android:textColor="@color/white"/>
 
 </LinearLayout>

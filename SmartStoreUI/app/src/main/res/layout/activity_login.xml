@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,7 +15,6 @@
         android:layout_marginTop="100sp"
         android:src="@drawable/logo"/>
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,9 +23,7 @@
 
         android:text="Login"
         android:textSize="50dp"
-        android:textColor="@color/coffee_dark_brown"
-        android:fontFamily="@font/eland_choice_b"
-        />
+        android:fontFamily="@font/eland_choice_b" />
 
     <EditText
         android:id="@+id/et_id"
@@ -34,13 +32,16 @@
         android:layout_marginBottom="10sp"
         android:layout_marginLeft="30sp"
         android:layout_marginRight="30sp"
-
-        android:background="@drawable/textview_regular"
-        android:fontFamily="@font/eland_choice_m"
-        android:textColorHint="@color/coffee_light_gray"
         android:hint="ID"
         android:inputType="text"
-        android:textColor="@color/coffee_dark_brown"/>
+
+        android:background="@drawable/textview_regular"
+        android:textColor="?attr/edColor"
+        android:textColorHint="?attr/edColorHint"
+        android:fontFamily="?attr/edFontFamily"/>
+
+<!--        style="@style/AppTheme.EditText"-->
+<!--        />-->
 
     <EditText
         android:id="@+id/et_pwd"
@@ -48,13 +49,13 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30sp"
         android:layout_marginRight="30sp"
-
-        android:background="@drawable/textview_regular"
-        android:fontFamily="@font/eland_choice_m"
-        android:textColorHint="@color/coffee_light_gray"
         android:hint="PW"
         android:inputType="textPassword"
-        android:textColor="@color/coffee_dark_brown"/>
+
+        android:background="@drawable/textview_regular"
+        android:textColor="?attr/edColor"
+        android:textColorHint="?attr/edColorHint"
+        android:fontFamily="?attr/edFontFamily"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -69,18 +70,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_margin="10sp"
-            android:background="@drawable/button_regular"
-            android:text="Login"/>
+            android:text="Login"
+            style="@style/Button"
+
+            android:background="?attr/btnBackground_user"
+            android:backgroundTint="?attr/btnBackgroundTint_user"
+            android:textColor="?attr/btnTextColor_user"
+            />
 
         <Button
             android:id="@+id/btn_join"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_margin="10sp"
-            android:background="@drawable/button_regular"
             android:text="Join"
-            android:onClick="join"/>
+            android:onClick="join"
+            style="@style/Button"
+
+            android:background="?attr/btnBackground_user"
+            android:backgroundTint="?attr/btnBackgroundTint_user"
+            android:textColor="?attr/btnTextColor_user"/>
     </LinearLayout>
 </LinearLayout>

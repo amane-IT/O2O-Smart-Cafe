@@ -33,6 +33,14 @@ class IntentApplication: Application() {
             .build()
 
         grade = Grade("", 0, 0, "")
+
+        val theme = getSharedPreferences("theme", MODE_PRIVATE)
+        if(theme.getInt("id", 0) == 0){
+            val editor = theme.edit()
+            editor.putInt("id", 1)
+            editor.commit()
+        }
+
     }
 
     companion object{

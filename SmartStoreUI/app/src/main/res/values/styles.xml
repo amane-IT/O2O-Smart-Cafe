@@ -3,5 +3,108 @@
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:colorBackground">@color/white</item>
         <item name="android:fontFamily">@font/eland_choice_b</item>
+        <item name="android:textColor">@color/coffee_dark_brown</item>
+
+        <item name="android:progressTint">@color/coffee_point_red</item>
+        <item name="android:progressBackgroundTint">@color/coffee_light_gray</item>
+        <item name="android:numStars">5</item>
+        <item name="android:max">10</item>
+        <item name="android:stepSize">0.1</item>
+
+        <!-- 커스텀 EditText -->
+        <item name="edColor">@color/coffee_dark_brown</item>
+        <item name="edColorHint">@color/coffee_light_gray</item>
+        <item name="edFontFamily">@font/eland_choice_m</item>
+        <item name="edBorderColor">@color/coffee_brown</item>
+
+        <!-- 유저관련 기능 버튼-->
+        <item name="btnBackground_user">@drawable/button_regular</item>
+        <item name="btnBackgroundTint_user">@color/coffee_brown</item>
+        <item name="btnTextColor_user">@color/white</item>
+
+        <!-- 주문관련 기능 버튼 -->
+        <item name="btnBackground_order">@color/coffee_menu_back</item>
+        <item name="btnBackgroundTint_order">@color/coffee_point_red</item>
+        <item name="btnTextColor_order">@color/white</item>
+
+        <item name="txtColor">@color/coffee_point_red</item>
+        <item name="txtSize">30sp</item>
+
+        <item name="etcColor">@color/coffee_brown</item>
+        <item name="backColor">@color/coffee_brown</item>
     </style>
+
+    <style name="AppTheme_Green" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:colorBackground">@color/white</item>
+        <item name="android:fontFamily">@font/eland_choice_b</item>
+        <item name="android:textColor">#05595B</item>
+
+        <item name="android:progressTint">#019267</item>
+        <item name="android:progressBackgroundTint">#E3FCBF</item>
+        <item name="android:numStars">5</item>
+        <item name="android:max">10</item>
+        <item name="android:stepSize">0.1</item>
+
+        <!-- 커스텀 EditText -->
+        <item name="edColor">#007965</item>
+        <item name="edColorHint">#7CBD1E</item>
+        <item name="edFontFamily">@font/eland_choice_m</item>
+        <item name="edBorderColor">#247881</item>
+
+        <!-- 유저관련 기능 버튼-->
+        <item name="btnBackground_user">@drawable/button_regular</item>
+        <item name="btnBackgroundTint_user">#00AD7C</item>
+        <item name="btnTextColor_user">@color/white</item>
+
+        <!-- 주문관련 기능 버튼 -->
+        <item name="btnBackground_order">#FFFBDF</item>
+        <item name="btnBackgroundTint_order">#14C38E</item>
+        <item name="btnTextColor_order">@color/white</item>
+
+        <item name="txtColor">#FF9999</item>
+        <item name="txtSize">30sp</item>
+
+        <item name="etcColor">#595260</item>
+        <item name="backColor">#91C788</item>
+    </style>
+
+    <style name="AppTheme_YB" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:colorBackground">@color/white</item>
+        <item name="android:fontFamily">@font/eland_choice_b</item>
+        <item name="android:textColor">#2C2E43</item>
+
+        <item name="android:progressTint">#FFD523</item>
+        <item name="android:progressBackgroundTint">#B2B1B9</item>
+        <item name="android:numStars">5</item>
+        <item name="android:max">10</item>
+        <item name="android:stepSize">0.1</item>
+
+        <!-- 커스텀 EditText -->
+        <item name="edColor">#2C2E43</item>
+        <item name="edColorHint">#595260</item>
+        <item name="edFontFamily">@font/eland_choice_m</item>
+        <item name="edBorderColor">#B2B1B9</item>
+
+        <!-- 유저관련 기능 버튼-->
+        <item name="btnBackground_user">@drawable/button_regular</item>
+        <item name="btnBackgroundTint_user">#2C2E43</item>
+        <item name="btnTextColor_user">@color/white</item>
+
+        <!-- 주문관련 기능 버튼 -->
+        <item name="btnBackground_order">#B2B1B9</item>
+        <item name="btnBackgroundTint_order">#2C2E43</item>
+        <item name="btnTextColor_order">@color/white</item>
+
+        <item name="txtColor">#FFD523</item>
+        <item name="txtSize">30sp</item>
+
+        <item name="etcColor">#B2B1B9</item>
+        <item name="backColor">#FFD523</item>
+    </style>
+
+    <style name="Button">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_margin">5sp</item>
+    </style>
+
 </resources>

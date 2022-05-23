@@ -20,7 +20,6 @@
             android:layout_height="wrap_content"
             android:text="김싸피님"
             android:textSize="25sp"
-            android:textColor="@color/coffee_dark_brown"
             android:textStyle="bold"
             android:fontFamily="@font/eland_choice_b"/>
 
@@ -34,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:text="좋은 하루 보내세요."
                 android:textSize="20sp"
-                android:textColor="@color/coffee_brown"/>
+                android:textColor="?attr/etcColor"/>
 
             <ImageView
                 android:layout_width="20dp"
@@ -48,7 +47,6 @@
         android:layout_height="wrap_content"
         android:text="알림판"
         android:textSize="24sp"
-        android:textColor="@color/coffee_dark_brown"
         android:fontFamily="@font/eland_choice_b"
         android:textStyle="bold"
         android:layout_marginBottom="10dp"/>
@@ -65,7 +63,6 @@
         android:layout_height="wrap_content"
         android:text="최근 주문"
         android:textSize="24sp"
-        android:textColor="@color/coffee_dark_brown"
         android:fontFamily="@font/eland_choice_b"
         android:textStyle="bold"
         android:layout_marginBottom="30dp"/>

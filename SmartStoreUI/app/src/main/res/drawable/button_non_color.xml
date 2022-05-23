@@ -6,7 +6,7 @@
         android:color="#FFFFFF"/>
     <stroke
         android:width="2dp"
-        android:color="@color/coffee_brown" />
+        android:color="?attr/edBorderColor" />
 
     <corners android:radius="10dp"/>
 

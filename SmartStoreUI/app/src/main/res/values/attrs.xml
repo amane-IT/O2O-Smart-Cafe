@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EditText">
+        <!-- editText 공통 변경 부분-->
+        <attr name="edColor" format="reference|color"/>
+        <attr name="edColorHint" format="reference|color"/>
+        <attr name="edFontFamily" format="reference|color"/>
+        <attr name="edBorderColor" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="Button">
+        <attr name="btnBackground_user" format="color|reference"/>
+        <attr name="btnBackground_order" format="color|reference" />
+        <attr name="btnBackgroundTint_user" format="reference|color" />
+        <attr name="btnBackgroundTint_order" format="color|reference" />
+        <attr name="btnTextColor_user" format="reference|color"/>
+        <attr name="btnTextColor_order" format="reference|color"/>
+
+    </declare-styleable>
+
+    <declare-styleable name="TextView">
+        <attr name="txtColor" format="color"/>
+        <attr name="txtSize" format="dimension"/>
+        <attr name="etcColor" format="color"/>
+        <attr name="backColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="BottomNavigationView">
+
+    </declare-styleable>
+
+</resources>

@@ -31,6 +31,17 @@ class JoinActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val theme = getSharedPreferences("theme", MODE_PRIVATE)
+        val themeId = theme.getInt("id", 1)
+
+        if(themeId == 1){
+            setTheme(R.style.AppTheme)
+        } else if(themeId == 2){
+            setTheme(R.style.AppTheme_Green)
+        } else {
+            setTheme(R.style.AppTheme_YB)
+        }
+
         binding = ActivityJoinBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

@@ -17,6 +17,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/user"/>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,7 +30,6 @@
                 android:layout_height="wrap_content"
                 android:text="김싸피님"
                 android:textSize="25sp"
-                android:textColor="@color/coffee_dark_brown"
                 android:textStyle="bold"
                 android:fontFamily="@font/eland_choice_b"/>
 
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:text="안녕하세요."
                 android:textSize="16sp"
-                android:textColor="@color/coffee_brown"/>
+                android:textColor="?attr/etcColor"/>
 
         </LinearLayout>
 
@@ -61,8 +61,7 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:maxHeight="30sp"
-            android:src="@drawable/seeds"
-            tools:src="@drawable/ic_launcher_background" />
+            android:src="@drawable/seeds" />
 
         <TextView
             android:id="@+id/tv_stamp"
@@ -81,9 +80,6 @@
             android:layout_weight="1"
             android:layout_marginLeft="10sp"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:progressBackgroundTint="@color/coffee_light_gray"
-            android:progressTint="@color/coffee_point_red"
-            android:max="10"
             android:progress="2"/>
 
         <TextView
@@ -105,6 +101,57 @@
         android:text="다음 레벨까지 앞으로 9잔 남았습니다."
         android:textColor="@android:color/darker_gray"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5sp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="테마 선택"
+            android:layout_gravity="center"
+            android:textColor="?attr/etcColor"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <RadioGroup
+            android:id="@+id/theme_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/radio1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="테마 1"
+                android:textColor="?attr/etcColor"
+                />
+
+            <RadioButton
+                android:id="@+id/radio2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="테마 2"
+                android:textColor="?attr/etcColor"/>
+
+            <RadioButton
+                android:id="@+id/radio3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="테마 3"
+                android:textColor="?attr/etcColor"/>
+        </RadioGroup>
+
+    </LinearLayout>
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -117,7 +164,6 @@
         android:layout_height="wrap_content"
         android:text="주문내역"
         android:textSize="24sp"
-        android:textColor="@color/coffee_dark_brown"
         android:fontFamily="@font/eland_choice_b"
         android:textStyle="bold"
         android:layout_marginBottom="30dp"/>

@@ -2,6 +2,7 @@ package com.ssafy.smartstore.fragment
 
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.getIntent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ssafy.smartstore.IntentApplication
 import com.ssafy.smartstore.OrderDetailActivity
+import com.ssafy.smartstore.R
 import com.ssafy.smartstore.adapater.HistoryAdapter
 import com.ssafy.smartstore.databinding.FragmentMyPageBinding
 import com.ssafy.smartstore.dto.OrderMap
@@ -33,6 +35,7 @@ class MyPageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         return FragmentMyPageBinding.inflate(inflater, container, false).apply {
             val prefs = activity?.getSharedPreferences("prefs", AppCompatActivity.MODE_PRIVATE)
 
@@ -98,6 +101,49 @@ class MyPageFragment : Fragment() {
             }
             myPageAdapter.onItemClickListener = itemClickListener
 
+            val theme = ctx.getSharedPreferences("theme", AppCompatActivity.MODE_PRIVATE)
+            val themeId = theme.getInt("id", 1)
+
+            if(themeId == 1){
+                radio1.isChecked = true
+            } else if(themeId == 2){
+                radio2.isChecked = true
+            } else {
+                radio3.isChecked = true
+            }
+
+            // 라디오버튼
+            themeGroup.setOnCheckedChangeListener { group, checkedId ->
+                when(checkedId){
+                    R.id.radio1 -> {
+                        if(themeId != 1){
+                            val editor = theme.edit()
+                            editor.putInt("id", 1)
+                            editor.commit()
+                            activity?.finish()
+                            startActivity(activity?.intent)
+                        }
+                    }
+                    R.id.radio2 -> {
+                        if(themeId != 2){
+                            val editor = theme.edit()
+                            editor.putInt("id", 2)
+                            editor.commit()
+                            activity?.finish()
+                            startActivity(activity?.intent)
+                        }
+                    }
+                    R.id.radio3 -> {
+                        if(themeId != 3){
+                            val editor = theme.edit()
+                            editor.putInt("id", 3)
+                            editor.commit()
+                            activity?.finish()
+                            startActivity(activity?.intent)
+                        }
+                    }
+                }
+            }
         }.root
     }
     /*
