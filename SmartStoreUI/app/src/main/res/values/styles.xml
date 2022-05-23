@@ -37,35 +37,35 @@
     <style name="AppTheme_Green" parent="Theme.AppCompat.NoActionBar">
         <item name="android:colorBackground">@color/white</item>
         <item name="android:fontFamily">@font/eland_choice_b</item>
-        <item name="android:textColor">#05595B</item>
+        <item name="android:textColor">#04009A</item>
 
-        <item name="android:progressTint">#019267</item>
-        <item name="android:progressBackgroundTint">#E3FCBF</item>
+        <item name="android:progressTint">#77ACF1</item>
+        <item name="android:progressBackgroundTint">#EABF9F</item>
         <item name="android:numStars">5</item>
         <item name="android:max">10</item>
         <item name="android:stepSize">0.1</item>
 
         <!-- 커스텀 EditText -->
-        <item name="edColor">#007965</item>
-        <item name="edColorHint">#7CBD1E</item>
+        <item name="edColor">#77ACF1</item>
+        <item name="edColorHint">#3EDBF0</item>
         <item name="edFontFamily">@font/eland_choice_m</item>
-        <item name="edBorderColor">#247881</item>
+        <item name="edBorderColor">#04009A</item>
 
         <!-- 유저관련 기능 버튼-->
         <item name="btnBackground_user">@drawable/button_regular</item>
-        <item name="btnBackgroundTint_user">#00AD7C</item>
+        <item name="btnBackgroundTint_user">#77ACF1</item>
         <item name="btnTextColor_user">@color/white</item>
 
         <!-- 주문관련 기능 버튼 -->
-        <item name="btnBackground_order">#FFFBDF</item>
-        <item name="btnBackgroundTint_order">#14C38E</item>
+        <item name="btnBackground_order">#C0FEFC</item>
+        <item name="btnBackgroundTint_order">#77ACF1</item>
         <item name="btnTextColor_order">@color/white</item>
 
-        <item name="txtColor">#FF9999</item>
+        <item name="txtColor">#3EDBF0</item>
         <item name="txtSize">30sp</item>
 
         <item name="etcColor">#595260</item>
-        <item name="backColor">#91C788</item>
+        <item name="backColor">#3EDBF0</item>
     </style>
 
     <style name="AppTheme_YB" parent="Theme.AppCompat.NoActionBar">

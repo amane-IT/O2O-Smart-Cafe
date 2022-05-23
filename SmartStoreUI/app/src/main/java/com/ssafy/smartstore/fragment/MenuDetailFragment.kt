@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ssafy.smartstore.IntentApplication
 import com.ssafy.smartstore.MapActivity
@@ -17,7 +18,12 @@ import com.ssafy.smartstore.ShoppingListActivity
 import com.ssafy.smartstore.adapater.MenuAdapter
 import com.ssafy.smartstore.dto.Product
 import com.ssafy.smartstore.databinding.FragmentMenuDetailBinding
+import com.ssafy.smartstore.dto.Favorite
+import com.ssafy.smartstore.service.FavoriteService
 import com.ssafy.smartstore.service.ProductService
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Callback
@@ -27,14 +33,11 @@ class MenuDetailFragment : Fragment() {
     private lateinit var ctx: Context
 
     private lateinit var menuAdapter: MenuAdapter
+    private var fList = mutableListOf<Favorite>()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         ctx = context
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
@@ -53,6 +56,13 @@ class MenuDetailFragment : Fragment() {
                 override fun onItemClick(view: View, position: Int) {
                     val intent = Intent(getActivity(), OrderActivity::class.java)
                     intent.putExtra("data", menuAdapter.listData[position])
+                    for(i in fList){
+                        if(i.productId == menuAdapter.listData[position].id){
+                            intent.putExtra("favorite", i)
+                            intent.putExtra("flag", true)
+                            break
+                        }
+                    }
                     startActivity(intent)
                 }
             }
@@ -73,6 +83,7 @@ class MenuDetailFragment : Fragment() {
     private fun initAdapter(){
         menuAdapter = MenuAdapter(ctx)
         getData()
+        getFavorite()
     }
 
     private fun getData() {
@@ -98,13 +109,20 @@ class MenuDetailFragment : Fragment() {
         })
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MenuDetailFragment().apply {
-                arguments = Bundle().apply {
-
-                }
+    private fun getFavorite(){
+        val fService = IntentApplication.retrofit.create(FavoriteService::class.java)
+        val userId = activity?.getSharedPreferences("prefs", AppCompatActivity.MODE_PRIVATE)?.getString("id", "")
+        CoroutineScope(Dispatchers.IO).launch {
+            val response = fService.getFavorites(userId!!).execute()
+            if(response.code() == 200){
+                var res = response.body()
+                if(res != null)
+                    fList = (res as MutableList<Favorite>)
             }
+        }
+    }
+
+    companion object {
+
     }
 }

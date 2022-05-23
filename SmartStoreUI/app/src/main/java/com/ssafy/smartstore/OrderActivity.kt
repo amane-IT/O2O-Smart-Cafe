@@ -12,8 +12,10 @@ import com.ssafy.smartstore.dto.Product
 import com.ssafy.smartstore.databinding.ActivityOrderBinding
 import com.ssafy.smartstore.dialog.RatingDialog
 import com.ssafy.smartstore.dto.Comment
+import com.ssafy.smartstore.dto.Favorite
 import com.ssafy.smartstore.dto.ProductDetail
 import com.ssafy.smartstore.service.CommentService
+import com.ssafy.smartstore.service.FavoriteService
 import com.ssafy.smartstore.service.ProductService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -43,10 +45,14 @@ class OrderActivity : AppCompatActivity() {
     val commentService = IntentApplication.retrofit.create(CommentService::class.java)
     val productService = IntentApplication.retrofit.create(ProductService::class.java)
 
+    var isFavorite :Favorite? = null
+    val fService = IntentApplication.retrofit.create(FavoriteService::class.java)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate: ")
 
+        // 테마 설정
         val theme = getSharedPreferences("theme", MODE_PRIVATE)
         val themeId = theme.getInt("id", 1)
 
@@ -63,6 +69,75 @@ class OrderActivity : AppCompatActivity() {
 
         data = intent.getSerializableExtra("data") as Product
         id = data!!.id
+
+        val flag = intent.getBooleanExtra("flag", false)
+        if(flag)
+            isFavorite = intent.getSerializableExtra("favorite") as Favorite
+
+        if(isFavorite != null){
+            binding.btnFavorite.setImageResource(R.drawable.outline_favorite_24)
+            binding.btnFavorite.tag = true
+        } else {
+            binding.btnFavorite.setImageResource(R.drawable.outline_favorite_border_24)
+            binding.btnFavorite.tag = false
+        }
+
+        binding.btnFavorite.setOnClickListener {
+            if(binding.btnFavorite.tag == true){
+                if(isFavorite != null){
+                    CoroutineScope(Dispatchers.IO).launch {
+                        val response = fService.delete(isFavorite!!.id).execute()
+                        if(response.code() == 200){
+                            val res = response.body()
+                            if(res!!){
+                                CoroutineScope(Dispatchers.Main).launch {
+                                    binding.btnFavorite.tag = false
+                                    binding.btnFavorite.setImageResource(R.drawable.outline_favorite_border_24)
+                                    isFavorite = null
+                                    Toast.makeText(this@OrderActivity, "즐겨찾기 삭제하였습니다.", Toast.LENGTH_SHORT).show()
+                                }
+                            } else {
+                                CoroutineScope(Dispatchers.Main).launch {
+                                    Toast.makeText(this@OrderActivity, "즐겨찾기 삭제 실패하였습니다.", Toast.LENGTH_SHORT)
+                                        .show()
+                                }
+                            }
+                        } else{
+                            CoroutineScope(Dispatchers.Main).launch {
+                                Toast.makeText(this@OrderActivity, "통신 실패", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                }
+            } else {
+                val prefs = getSharedPreferences("prefs", MODE_PRIVATE)
+                val userId = prefs.getString("id", "")
+                CoroutineScope(Dispatchers.IO).launch {
+                    val f = Favorite(id, userId!!)
+                    val response = fService.insert(f).execute()
+                    if(response.code() == 200){
+                        val res = response.body()
+                        if(res != null){
+                            CoroutineScope(Dispatchers.Main).launch {
+                                isFavorite = res
+                                binding.btnFavorite.tag = true
+                                binding.btnFavorite.setImageResource(R.drawable.outline_favorite_24)
+                                Toast.makeText(this@OrderActivity, "즐겨찾기 추가하였습니다.", Toast.LENGTH_SHORT).show()
+                            }
+                        } else {
+                            CoroutineScope(Dispatchers.Main).launch {
+                                Toast.makeText(this@OrderActivity, "즐겨찾기 추가 실패하였습니다.", Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                        }
+                    } else{
+                        CoroutineScope(Dispatchers.Main).launch {
+                            Toast.makeText(this@OrderActivity, "통신 실패", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+        }
 
         var result: ProductDetail? = null
         CoroutineScope(Dispatchers.IO).launch {
@@ -117,7 +192,6 @@ class OrderActivity : AppCompatActivity() {
                 Toast.makeText(this, "가져오기 실패", Toast.LENGTH_SHORT).show()
                 null
             } else{
-                Log.d(TAG, "setData: ${res}")
                 data = Product(id, res[0].name, res[0].type, res[0].price, res[0].img)
                 res[0]
             }

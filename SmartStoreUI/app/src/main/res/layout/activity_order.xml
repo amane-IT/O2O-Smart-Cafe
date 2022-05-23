@@ -7,20 +7,45 @@
     android:orientation="vertical"
     tools:context=".OrderActivity">
 
-    <ImageView
-        android:id="@+id/iv_img"
+    <LinearLayout
+        android:id="@+id/img_layout"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:background="@color/coffee_menu_back"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/coffee1"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="2"/>
+
+        <ImageView
+            android:id="@+id/iv_img"
+            android:layout_width="wrap_content"
+            android:layout_height="140dp"
+            android:layout_gravity="center"
+            tools:src="@drawable/coffee1"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/btn_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/outline_favorite_24"
+            android:backgroundTint="@android:color/transparent"/>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/info_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/iv_img"
+        app:layout_constraintTop_toBottomOf="@+id/img_layout"
         android:padding="20dp">
 
         <TextView
