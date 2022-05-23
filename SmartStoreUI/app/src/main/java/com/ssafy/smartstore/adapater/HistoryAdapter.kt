@@ -29,7 +29,13 @@ class HistoryAdapter(val context: Context, val name: String): RecyclerView.Adapt
         var pickup = itemView.findViewById(R.id.btn_pickup) as Button
 
         fun bindOnItemClickListener(onItemClickListener: OnItemClickListener) {
-            layout.setOnClickListener {
+            cart.setOnClickListener {
+                //adapterPosition: ViewHolder에서 제공하는 idx를 알려주는 함수
+                Log.d("TAG", "bindOnItemClickListener: $adapterPosition")
+                onItemClickListener.onItemClick(it, adapterPosition)
+            }
+
+            pickup.setOnClickListener {
                 //adapterPosition: ViewHolder에서 제공하는 idx를 알려주는 함수
                 Log.d("TAG", "bindOnItemClickListener: $adapterPosition")
                 onItemClickListener.onItemClick(it, adapterPosition)

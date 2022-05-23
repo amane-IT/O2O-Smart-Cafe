@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ssafy.smartstore.IntentApplication
 import com.ssafy.smartstore.OrderDetailActivity
 import com.ssafy.smartstore.R
+import com.ssafy.smartstore.ShoppingListActivity
 import com.ssafy.smartstore.adapater.HistoryAdapter
 import com.ssafy.smartstore.adapater.NoticeAdapter
 import com.ssafy.smartstore.databinding.FragmentHomeBinding
@@ -65,9 +66,9 @@ class HomeFragment : Fragment() {
             val itemClickListener = object : HistoryAdapter.OnItemClickListener{
                 override fun onItemClick(view: View, position: Int) {
                     Log.d("position", "$position")
-                    val intent = Intent(getActivity(), OrderDetailActivity::class.java)
-                    intent.putExtra("data", homeAdapter.objects[position].o_id)
-                    intent.putExtra("date", homeAdapter.objects[position].order_time)
+                    val intent = Intent(getActivity(), ShoppingListActivity::class.java)
+                    intent.putExtra("from", "home")
+                    intent.putExtra("id", homeAdapter.objects[position].o_id)
                     startActivity(intent)
                 }
             }

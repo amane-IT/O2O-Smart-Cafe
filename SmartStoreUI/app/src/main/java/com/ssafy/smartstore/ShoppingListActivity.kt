@@ -21,6 +21,8 @@ import com.ssafy.smartstore.service.UserService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 
 // F06: 주문 관리 - 상품 주문 - 로그인한 사용자는 상품 상세 화면 에서 n개를 선정하여 장바구니에 등록할 수 있다. 로그인 한 사용자만 자기의 계정으로 구매를 처리할 수 있다.
@@ -83,6 +85,10 @@ class ShoppingListActivity : AppCompatActivity() {
 
         if (intent.getStringExtra("from").equals("order"))
             addPreference()
+
+        else if(intent.getStringExtra("from").equals("home")){
+            reorder(intent.getIntExtra("id", -1))
+        }
 
         else
             getPreferences()
@@ -207,13 +213,7 @@ class ShoppingListActivity : AppCompatActivity() {
                 Log.d(TAG, "order: ${updateStamp}")
 
                 if(insertId != -1){
-                    for(i in 0 until IntentApplication.cntTmp) {
-                        val detail = getSharedPreferences("item${i}", MODE_PRIVATE)
-                        val editor = detail.edit()
-                        editor.clear()
-                        editor.apply()
-                    }
-                    IntentApplication.cntTmp = 0
+                    IntentApplication.shoppingList.clear()
 
                     this.launch(Dispatchers.Main) {
                         val intent = Intent(this@ShoppingListActivity, MainActivity::class.java)
@@ -299,5 +299,33 @@ class ShoppingListActivity : AppCompatActivity() {
             }
             else { }
         }
+    }
+
+    fun reorder(id: Int){
+        CoroutineScope(Dispatchers.IO).launch{
+            val response = orderService.getOrder(id).execute()
+            if(response.code() == 200){
+                var res = response.body() ?: mutableListOf<Map<String, Object>>()
+                var completed = "N"
+
+                for(i in res){
+                    val shop = Shopping(i.get("img").toString(), i.get("name").toString(), i.get("unitprice").toString().toDouble().toInt(), i.get("quantity").toString().toDouble().toInt())
+                    completed = i.get("completed").toString()
+                    IntentApplication.shoppingList.add(shop)
+                }
+
+                var price = 0
+                for(i in IntentApplication.shoppingList){
+                    price += i.price * i.quantity
+                }
+
+                adapter!!.objects = IntentApplication.shoppingList
+                this.launch(Dispatchers.Main) {
+                    adapter!!.notifyDataSetChanged()
+                    getPreferences()
+                }
+            }
+        }
+
     }
 }

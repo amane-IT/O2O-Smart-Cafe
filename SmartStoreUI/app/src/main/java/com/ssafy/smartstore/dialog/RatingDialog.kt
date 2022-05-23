@@ -15,7 +15,6 @@ import com.ssafy.smartstore.dto.Comment
 import com.ssafy.smartstore.service.CommentService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.DisposableHandle
 import kotlinx.coroutines.launch
 
 class RatingDialog(context: Context, comment: Comment) {
