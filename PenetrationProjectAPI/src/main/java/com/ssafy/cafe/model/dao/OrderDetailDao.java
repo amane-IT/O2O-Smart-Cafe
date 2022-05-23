@@ -15,5 +15,7 @@ public interface OrderDetailDao {
 	List<OrderDetail> selectAll();
 	
 	List<Integer> selectTop3();
+	
+	int selectUserMenu(String userId);
 
 }

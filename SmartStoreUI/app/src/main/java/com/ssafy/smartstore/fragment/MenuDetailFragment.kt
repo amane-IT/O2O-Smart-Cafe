@@ -35,6 +35,7 @@ class MenuDetailFragment : Fragment() {
 
     private lateinit var menuAdapter: MenuAdapter
     private var fList = mutableListOf<Favorite>()
+    private var userId: String? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -87,6 +88,7 @@ class MenuDetailFragment : Fragment() {
         getData()
         getFavorite()
         getTop3()
+        getUserMenu()
         menuAdapter.notifyDataSetChanged()
 
     }
@@ -120,7 +122,7 @@ class MenuDetailFragment : Fragment() {
 
     private fun getFavorite(){
         val fService = IntentApplication.retrofit.create(FavoriteService::class.java)
-        val userId = activity?.getSharedPreferences("prefs", AppCompatActivity.MODE_PRIVATE)?.getString("id", "")
+        userId = activity?.getSharedPreferences("prefs", AppCompatActivity.MODE_PRIVATE)?.getString("id", "")
         CoroutineScope(Dispatchers.IO).launch {
             val response = fService.getFavorites(userId!!).execute()
             if(response.code() == 200){
@@ -153,6 +155,32 @@ class MenuDetailFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<Int>>, t: Throwable) {
+                Log.d("TAG", "onFailure: 통신 오류!")
+            }
+        })
+    }
+
+    private fun getUserMenu(){
+        val oService = IntentApplication.retrofit.create(OrderService::class.java)
+        oService.getUserMenu(userId!!).enqueue(object : Callback<Int> {
+            override fun onResponse(call: Call<Int>, response: Response<Int>) {
+                val res = response.body()
+                if (response.code() == 200) {
+                    if(res != null){
+                        menuAdapter.best = res
+                        Log.d("TAG", "getTop3: data change start")
+                        menuAdapter.notifyDataSetChanged()
+                        Log.d("TAG", "getTop3: data change end")
+                    }
+                    else {
+                        CoroutineScope(Dispatchers.Main).launch{
+                            Toast.makeText(activity, "TOP 정보를 가져올 수 없음!", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<Int>, t: Throwable) {
                 Log.d("TAG", "onFailure: 통신 오류!")
             }
         })

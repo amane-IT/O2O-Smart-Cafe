@@ -54,6 +54,12 @@ public class OrderRestController {
 		return oService.selectTop3();
 	}
 	
+	@GetMapping("/myMenu")
+	@ApiOperation(value = "사용자가 가장 많이 시킨 메뉴 하나를 반환한다.", response = Integer.class)
+	public int getBestMenu(String userId) {
+		return oService.selectUserMenu(userId);
+	}
+	
 	
 	
 }

@@ -10,6 +10,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.datatransport.runtime.firebase.transport.LogEventDropped
 import com.ssafy.smartstore.R
 import com.ssafy.smartstore.dto.Product
 
@@ -17,6 +18,7 @@ class MenuAdapter(private val context: Context): RecyclerView.Adapter<MenuAdapte
 
     var listData: List<Product> = emptyList()
     var topList: List<Int> = emptyList()
+    var best = 0
 
     inner class MenuViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val item = itemView.findViewById<ImageButton>(R.id.btn_menu_item)
@@ -60,6 +62,13 @@ class MenuAdapter(private val context: Context): RecyclerView.Adapter<MenuAdapte
                     top.setImageResource(context.resources.getIdentifier("silver", "drawable", context.packageName))
                 } else{
                     top.setImageResource(context.resources.getIdentifier("bronze", "drawable", context.packageName))
+                }
+            }
+
+            if(best != 0){
+                if(best == dto.id){
+                    Log.d("TAG", "onBindViewHolder: $best , ${dto.id}")
+                    top.setBackgroundResource(R.drawable.round_star_24)
                 }
             }
         }

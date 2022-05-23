@@ -57,4 +57,7 @@ public interface OrderService {
 	
 	
 	List<Integer> selectTop3();
+	
+	
+	int selectUserMenu(String userId);
 }

@@ -21,4 +21,8 @@ interface OrderService {
     // 전체 인기메뉴 top 3를 반환
     @GET("order")
     fun getTop3(): Call<List<Int>>
+
+    // 사용자가 가장 많이 시킨 메뉴 반환
+    @GET("order/myMenu")
+    fun getUserMenu(@Query("userId") userId : String): Call<Int>
 }

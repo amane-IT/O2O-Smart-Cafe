@@ -37,4 +37,14 @@
 		
 	</select>
 	
+	<select id="selectUserMenu" parameterType="string" resultType="int">
+		SELECT product_id FROM t_order_detail
+		where order_id in (
+			SELECT o_id FROM t_order
+			where user_id = #{userId}
+		)
+		group by product_id
+		order by SUM(quantity) desc limit 1
+	</select>
+	
 </mapper>

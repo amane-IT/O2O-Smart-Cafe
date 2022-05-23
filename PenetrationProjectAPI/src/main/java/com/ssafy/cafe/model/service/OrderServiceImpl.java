@@ -83,6 +83,11 @@ public class OrderServiceImpl implements OrderService {
 	public List<Integer> selectTop3() {
 		return dDao.selectTop3();
 	}
+
+	@Override
+	public int selectUserMenu(String userId) {
+		return dDao.selectUserMenu(userId);
+	}
 	
 	
 
