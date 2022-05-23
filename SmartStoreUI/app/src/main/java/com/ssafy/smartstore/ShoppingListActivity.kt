@@ -111,6 +111,8 @@ class ShoppingListActivity : AppCompatActivity() {
             order()
         }
 
+        Log.d(TAG, "TABLE NUM: $tableNum")
+
         // NFC
         nfcAdapter = NfcAdapter.getDefaultAdapter(this)
         if(nfcAdapter == null)
@@ -170,8 +172,8 @@ class ShoppingListActivity : AppCompatActivity() {
         cnt = intent.getIntExtra("qty", 0)
         //shoppingList.add(Shopping(data.img.substring(0, data.img.length - 4), data.name, data.price, cnt))
         Log.d(TAG, data.img.substring(0, data.img.length - 4))
-        IntentApplication.shoppingList.add(Shopping(data.id, data.img.substring(0, data.img.length - 4), data.name, data.price, cnt))
-        adapter!!.notifyDataSetChanged()
+        IntentApplication.shoppingList.add(Shopping(data.id, data.img, data.name, data.price, cnt))
+        getPreferences()
     }
 
     // 장바구니 갱신
@@ -194,6 +196,11 @@ class ShoppingListActivity : AppCompatActivity() {
         val userId = user.getString("id", "").toString()
         val detailList = mutableListOf<OrderDetail>()
         var totalCnt = 0
+
+        if(IntentApplication.shoppingList.isEmpty()){
+            Toast.makeText(this, "장바구니가 비어있습니다.", Toast.LENGTH_SHORT).show()
+            return
+        }
 
         for(i in IntentApplication.shoppingList){
             totalCnt += i.quantity
@@ -224,18 +231,21 @@ class ShoppingListActivity : AppCompatActivity() {
                 Log.d(TAG, "order: ${updateStamp}")
 
                 if(insertId != -1){
-                    IntentApplication.shoppingList.clear()
 
                     this.launch(Dispatchers.Main) {
                         val intent = Intent(this@ShoppingListActivity, MainActivity::class.java)
-                        if(updateStamp == 1)
-                            Toast.makeText(this@ShoppingListActivity, "주문이 완료되었습니다. \n" +
-                                    " 스탬프가 ${totalCnt}개 적립되었습니다.", Toast.LENGTH_SHORT).show()
+                        if(updateStamp == 1) {
+                            Toast.makeText(
+                                this@ShoppingListActivity, "주문이 완료되었습니다. \n" +
+                                        " 스탬프가 ${totalCnt}개 적립되었습니다.", Toast.LENGTH_SHORT
+                            ).show()
+                            startActivity(intent)
+                            IntentApplication.shoppingList.clear()
+                            finish()
+                        }
                         else
-                            Toast.makeText(this@ShoppingListActivity, "주문이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@ShoppingListActivity, "주문 실패하였습니다.", Toast.LENGTH_SHORT).show()
 
-                        startActivity(intent)
-                        finish()
                     }
                 } else{
                     this.launch(Dispatchers.Main) {
@@ -260,7 +270,7 @@ class ShoppingListActivity : AppCompatActivity() {
             } else
                 res!!
         } else
-            -1
+            response.code()
 
         return result
     }
@@ -305,8 +315,9 @@ class ShoppingListActivity : AppCompatActivity() {
 
             if (recType.equals("T")) {
                 tableNum = "No.${String(recInfo.payload, 3, recInfo.payload.size - 3)}"
-                Log.d(TAG, "processIntent: $tableNum")
+                Log.d(TAG, "TABLE NUM: $tableNum")
                 Toast.makeText(this@ShoppingListActivity, "현재 테이블 번호는 ${tableNum} 입니다.", Toast.LENGTH_SHORT).show()
+                order()
             }
             else { }
         }

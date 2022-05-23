@@ -259,6 +259,7 @@ class OrderActivity : AppCompatActivity() {
         val intent = Intent(this, ShoppingListActivity::class.java)
         intent.putExtra("data", data)
         intent.putExtra("qty", binding.tvCount.text.toString().toInt())
+        Log.d(TAG, "goList: ${binding.tvCount.text.toString().toInt()}")
         intent.putExtra("from", "order")
         startActivity(intent)
         finish()
