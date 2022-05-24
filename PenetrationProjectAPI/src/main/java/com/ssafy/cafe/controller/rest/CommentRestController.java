@@ -49,4 +49,12 @@ public class CommentRestController {
 		cService.removeComment(id);
 		return true;
 	}
+	
+	@PutMapping
+	@Transactional
+	@ApiOperation(value = "comment 객체를 수정한다.", response = Boolean.class)
+	public Boolean update(@RequestBody Comment comment) {
+		cService.updateComment(comment);
+		return true;
+	}	
 }
