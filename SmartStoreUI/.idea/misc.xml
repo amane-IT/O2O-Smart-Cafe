@@ -47,7 +47,11 @@
         <entry key="..\:/SSAFY/AOS_UI/aos_pjt1_gumi0607_03/SmartStoreUI/app/src/main/res/layout/item_menu.xml" value="0.22604166666666667" />
         <entry key="..\:/SSAFY/AOS_UI/aos_pjt1_gumi0607_03/SmartStoreUI/app/src/main/res/layout/item_notice.xml" value="0.358695652173913" />
         <entry key="..\:/SSAFY/AOS_UI/aos_pjt1_gumi0607_03/SmartStoreUI/app/src/main/res/layout/item_order.xml" value="0.67" />
+        <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable-v24/bottom_nav_color.xml" value="0.17" />
         <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable-v24/outline_star_24.xml" value="0.195" />
+        <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable-v24/round_home_24.xml" value="0.1675" />
+        <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable-v24/round_local_mall_20.xml" value="0.1675" />
+        <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable-v24/round_manage_accounts_24.xml" value="0.1675" />
         <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable-v24/round_star_24.xml" value="0.195" />
         <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable/button_color.xml" value="0.1" />
         <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable/button_go_order.xml" value="0.1785" />
@@ -57,7 +61,16 @@
         <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable/edit.xml" value="0.1665" />
         <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable/edit_48px.xml" value="0.125" />
         <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable/favorite.xml" value="0.1665" />
+        <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable/ic__021533_number_circle_one_bold_icon.xml" value="0.248" />
+        <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable/ic__337538_game_go_poke_pokemon_star_icon.xml" value="0.248" />
+        <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable/ic__612305_birthday_diamond_gem_gift_present_icon.xml" value="0.248" />
+        <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable/ic__730978_cynthia_moon_selene_christmas_holiday_icon.xml" value="0.248" />
+        <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable/ic__gold.xml" value="0.1955" />
+        <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable/ic_bronze.xml" value="0.248" />
+        <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable/ic_circle_one.xml" value="0.248" />
+        <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable/ic_launcher_background.xml" value="0.17" />
         <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.125" />
+        <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable/ic_silver.xml" value="0.248" />
         <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable/indicator.xml" value="0.125" />
         <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable/outline_favorite_24.xml" value="0.1665" />
         <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/drawable/outline_favorite_border_24.xml" value="0.27" />
@@ -86,9 +99,10 @@
         <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/layout/fragment_menu_detail.xml" value="0.12132725430597771" />
         <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/layout/fragment_my_page.xml" value="0.67" />
         <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/layout/item_detail.xml" value="0.24947916666666667" />
-        <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/layout/item_menu.xml" value="0.5" />
+        <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/layout/item_menu.xml" value="0.75" />
         <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/layout/item_notice.xml" value="0.24947916666666667" />
         <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/layout/item_order.xml" value="0.25364583333333335" />
+        <entry key="..\:/SSAFY/AOS_final/final_gumi0607_03/SmartStoreUI/app/src/main/res/menu/menu.xml" value="0.25364583333333335" />
         <entry key="..\:/SSAFY/aos_pjt1_gumi0607_03/SmartStoreUI/app/src/main/res/drawable/button_go_order.xml" value="0.1" />
         <entry key="..\:/SSAFY/aos_pjt1_gumi0607_03/SmartStoreUI/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1455" />
         <entry key="..\:/SSAFY/aos_pjt1_gumi0607_03/SmartStoreUI/app/src/main/res/drawable/indicator.xml" value="0.1455" />

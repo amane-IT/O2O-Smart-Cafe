@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools"
     android:id="@+id/layout"
@@ -11,31 +10,37 @@
         android:id="@+id/btn_menu_item"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_margin="5dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="16dp"
+        android:layout_margin="10sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/button_go_order"
-        android:scaleType="fitCenter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:scaleType="fitCenter" />
 
     <ImageView
         android:id="@+id/is_best"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="70dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="60dp"
         android:adjustViewBounds="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tool:src="@drawable/outline_favorite_24"/>
+        tool:src="@drawable/outline_favorite_24" />
+
+    <ImageView
+        android:id="@+id/is_favorite"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:adjustViewBounds="true"
+        tool:src="@drawable/outline_favorite_24"
+        android:layout_below="@id/is_best"/>
 
     <TextView
         android:id="@+id/tv_name"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="10sp"
+        android:layout_gravity="center"
         android:gravity="center"
-        tool:text="아메리카노"
-        app:layout_constraintTop_toBottomOf="@id/btn_menu_item"/>
+        android:textSize="10sp"
+        android:layout_below="@id/btn_menu_item"
+        android:layout_centerHorizontal="true"
+        tool:text="아메리카노" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

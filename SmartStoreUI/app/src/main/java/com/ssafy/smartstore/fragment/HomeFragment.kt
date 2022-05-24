@@ -2,6 +2,7 @@ package com.ssafy.smartstore.fragment
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -23,6 +24,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.*
 
 class HomeFragment : Fragment() {
 
@@ -41,6 +43,12 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         // 알림판 RecyclerView
+        val prefs = activity?.getSharedPreferences("prefs", AppCompatActivity.MODE_PRIVATE)
+        val message = activity?.intent!!.getBooleanExtra("isBirthDay", false)
+
+        if(message){
+            noticeList.add("생일 축하드립니다! \n생일 쿠폰 3개가 발급되었습니다! \n행복한 하루 되세요~")
+        }
         noticeList.add("오늘 적립한 스탬프의 개수는 5개 입니다.")
         noticeList.add("주문하신 메뉴가 나왔습니다.")
 
@@ -51,7 +59,6 @@ class HomeFragment : Fragment() {
             listNotice.adapter = adapter
 
             homeAdapter = HistoryAdapter(ctx, "Home")
-            val prefs = activity?.getSharedPreferences("prefs", AppCompatActivity.MODE_PRIVATE)
 
             CoroutineScope(Dispatchers.Main).launch {
                 getItems(prefs!!.getString("id", "").toString())

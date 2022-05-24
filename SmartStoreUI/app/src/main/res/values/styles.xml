@@ -32,6 +32,9 @@
 
         <item name="etcColor">@color/coffee_brown</item>
         <item name="backColor">@color/coffee_brown</item>
+        <item name="backTextColor">@color/coffee_menu_back</item>
+        <item name="backTextNot">#1C0A00</item>
+
 
     </style>
 
@@ -68,6 +71,9 @@
         <item name="etcColor">#595260</item>
         <item name="backColor">#3EDBF0</item>
 
+        <item name="backTextColor">#C0FEFC</item>
+        <item name="backTextNot">#2155CD</item>
+
     </style>
 
     <style name="AppTheme_YB" parent="Theme.AppCompat.NoActionBar">
@@ -102,6 +108,9 @@
 
         <item name="etcColor">#B2B1B9</item>
         <item name="backColor">#FFD523</item>
+        <item name="backTextColor">#2C2E43</item>
+        <item name="backTextNot">#CF7500</item>
+
 
     </style>
 

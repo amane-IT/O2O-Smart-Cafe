@@ -23,6 +23,8 @@
         <attr name="txtSize" format="dimension"/>
         <attr name="etcColor" format="color"/>
         <attr name="backColor" format="color"/>
+        <attr name="backTextColor" format="color"/>
+        <attr name="backTextNot" format="color"/>
     </declare-styleable>
 
 </resources>

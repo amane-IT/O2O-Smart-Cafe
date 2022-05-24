@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="@drawable/button_non_color"
     android:gravity="center"
-    android:padding="30dp">
+    android:padding="20dp">
 
     <ImageView
         android:id="@+id/img_item"
@@ -36,6 +36,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <Button
@@ -45,16 +46,14 @@
             android:layout_weight="1"
             android:text="픽업완료"
             android:background="@drawable/button_go_order"
-            android:backgroundTint="?attr/btnBackground_order"
-            android:layout_marginTop="10dp"/>
+            android:backgroundTint="?attr/btnBackground_order"/>
 
         <Button
             android:id="@+id/btn_cart"
-            android:layout_width="50dp"
+            android:layout_width="50sp"
             android:layout_height="45dp"
             android:layout_gravity="center"
-            android:background="@drawable/shopping_cart"
-            android:layout_marginTop="10dp"/>
-
+            android:gravity="center"
+            android:background="@drawable/shopping_cart"/>
     </LinearLayout>
 </LinearLayout>

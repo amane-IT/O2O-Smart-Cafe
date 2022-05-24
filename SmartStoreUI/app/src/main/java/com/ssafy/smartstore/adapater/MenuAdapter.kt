@@ -24,6 +24,7 @@ class MenuAdapter(private val context: Context): RecyclerView.Adapter<MenuAdapte
         val item = itemView.findViewById<ImageButton>(R.id.btn_menu_item)
         val item_name= itemView.findViewById<TextView>(R.id.tv_name)
         val top = itemView.findViewById<ImageView>(R.id.is_best)
+        val favorite = itemView.findViewById<ImageView>(R.id.is_favorite)
 
         fun bindOnItemClickListener(onItemClickListener: OnItemClickListener) {
             item.setOnClickListener {
@@ -57,18 +58,18 @@ class MenuAdapter(private val context: Context): RecyclerView.Adapter<MenuAdapte
 
             if(topList.contains(dto.id)){
                 if(topList.indexOf(dto.id) == 0){
-                    top.setImageResource(context.resources.getIdentifier("gold", "drawable", context.packageName))
+                    top.setImageDrawable(context.resources.getDrawable(R.drawable.ic_gold))
                 } else if(topList.indexOf(dto.id) == 1){
-                    top.setImageResource(context.resources.getIdentifier("silver", "drawable", context.packageName))
+                    top.setImageDrawable(context.resources.getDrawable(R.drawable.ic_silver))
                 } else{
-                    top.setImageResource(context.resources.getIdentifier("bronze", "drawable", context.packageName))
+                    top.setImageDrawable(context.resources.getDrawable(R.drawable.ic_bronze))
                 }
             }
 
             if(best != 0){
                 if(best == dto.id){
                     Log.d("TAG", "onBindViewHolder: $best , ${dto.id}")
-                    top.setBackgroundResource(R.drawable.round_star_24)
+                    favorite.setBackgroundResource(R.drawable.round_star_24)
                 }
             }
         }

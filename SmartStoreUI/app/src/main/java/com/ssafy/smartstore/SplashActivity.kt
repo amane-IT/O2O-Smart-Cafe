@@ -42,6 +42,7 @@ class SplashActivity : AppCompatActivity() {
                 Handler().postDelayed({
                     kotlin.run {
                         val intent = Intent(this@SplashActivity, MainActivity::class.java)
+                        intent.putExtra("isBirthDay", true)
                         startActivity(intent)
                         finish()
                     }
