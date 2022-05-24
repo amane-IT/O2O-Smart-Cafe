@@ -36,13 +36,20 @@ class DateDialog(context: Context) {
         monthPicker = dialog.findViewById(R.id.picker_month)
         dayPicker = dialog.findViewById(R.id.picker_day)
 
-        monthPicker.value = cal.get(Calendar.MONTH) + 1
+        Log.d("TAG", "start: ${cal.get(Calendar.MONTH) + 1},  ${cal.get(Calendar.DAY_OF_MONTH)}")
+        val tmp = (cal.get(Calendar.MONTH) + 1)
+        Log.d("TAG", "start: ${tmp}")
         monthPicker.minValue = 1
         monthPicker.maxValue = 12
+        monthPicker.value = tmp
 
-        dayPicker.value = cal.get(Calendar.DAY_OF_MONTH)
         dayPicker.minValue = 1
-
+        dayPicker.maxValue =
+            when(monthPicker.value){
+                1, 3, 5, 7, 8, 10, 12 -> 31
+                2 -> 29
+                else -> 30
+            }
         monthPicker.setOnValueChangedListener { picker, oldVal, newVal ->
             dayPicker.maxValue =
                 when(newVal){
@@ -51,6 +58,7 @@ class DateDialog(context: Context) {
                     else -> 30
                 }
         }
+        dayPicker.value = cal.get(Calendar.DAY_OF_MONTH)
 
         setNumberPickerTextColor(monthPicker, R.attr.txtColor)
         setNumberPickerTextColor(dayPicker, R.attr.txtColor)
@@ -61,7 +69,6 @@ class DateDialog(context: Context) {
             val month = monthPicker.value
             val day = dayPicker.value
 
-            instance.birthday = "${month}/${day}"
             instance.setBirthdayText("${month}월 ${day}일")
             dialog.dismiss()
         }

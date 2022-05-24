@@ -19,6 +19,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.lang.reflect.Type
+import java.util.*
 
 // F04: 회원 관리 - 회원 로그인 - 추가된 회원 정보를 이용해서 로그인 할 수 있다. 로그아웃을 하기 전까지 앱을 실행시켰 을 때 로그인이 유지되어야 한다.
 private const val TAG = "LoginActivity_싸피"
@@ -26,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var id: String
+    private var birthDay = ""
 
     val userService = IntentApplication.retrofit.create(UserService::class.java)
 
@@ -68,6 +70,10 @@ class LoginActivity : AppCompatActivity() {
         editor.putString("pwd", recUser.pass)
         editor.putString("name", recUser.name)
         editor.putInt("stamps", recUser.stamps)
+        if(recUser.birthday != null){
+            editor.putString("birthday", recUser.birthday)
+            birthDay = recUser.birthday!!
+        }
         editor.commit()
     }
 
@@ -116,12 +122,15 @@ class LoginActivity : AppCompatActivity() {
 
                                         etId.text = null
                                         etPwd.text = null
-                                        startActivity(
-                                            Intent(
-                                                this@LoginActivity,
-                                                MainActivity::class.java
-                                            )
-                                        )
+                                        var intent = Intent(this@LoginActivity, SplashActivity::class.java)
+
+                                        // 날짜
+                                        val cal = Calendar.getInstance()
+                                        val today = "${cal.get(Calendar.MONTH) + 1}_${cal.get(Calendar.DAY_OF_MONTH)}"
+                                        if(!birthDay.equals(today))
+                                            intent = Intent(this@LoginActivity, MainActivity::class.java)
+
+                                        startActivity(intent)
                                         finish()
                                     } else {
                                         Toast.makeText(
