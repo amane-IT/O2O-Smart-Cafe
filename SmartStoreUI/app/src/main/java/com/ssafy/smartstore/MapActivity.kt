@@ -145,7 +145,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerC
 //        Toast.makeText(this, marker.title + '\n' + marker.position, Toast.LENGTH_SHORT).show()
         // MapInfoDialog 띄우기
         val dialog = MapInfoDialog(this@MapActivity)
-        dialog.start(marker.title!!)
+        dialog.start(currentPosition, marker)
 
         return true
     }
