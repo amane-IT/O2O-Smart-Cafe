@@ -118,8 +118,13 @@ export default {
                   this.$set(this.counts, 10 - detailList[i].productId, 0)
                 }
                 this.totalCount = 0
-                // 새로고침
-                this.$router.go()
+                // // 새로고침
+                // this.$router.go()
+                // let form = {
+                //   'id': window.$cookies.get("id"),
+                //   'pass': window.$cookies.get("pass")
+                // }
+                // this.$store.dispatch('login', form)
                 // const cookie = window.$cookies.get("accessToken")
                 // alert(JSON.stringify(cookie))                
                 // let form = {

@@ -101,6 +101,7 @@ export default {
         return this.$store.getters.getIsLoggedin;
       },
       orderByUser() {
+        this.$store.dispatch('selectOrderByUser', this.loginUser['user'].id)
         return this.$store.getters.getOrderByUser;
       },
       userGrade() {

@@ -72,12 +72,13 @@
           .post('/user', this.form)
           .then((response) => {
             console.log("setData : " + response.data);          
+            alert("가입 성공했습니다!")
           })
           .catch((error) => {
             console.log(error)
+            alert("네트워크 오류!")
           })
 
-          alert("가입 성공했습니다!")
           this.$router.push('/');
         }
       },

@@ -12,7 +12,7 @@
         <b-list-group class="col-10 text-center align-self-center">
             <b-list-group-item>상품명 : {{ products[10 - no].name }}</b-list-group-item>
             <b-list-group-item>가격 : {{ products[10 - no].price }}원</b-list-group-item>
-            <b-list-group-item>총 주문 수량 : {{ this.getTotalSells() }}개</b-list-group-item>
+            <b-list-group-item>총 주문 수량 : {{ product[0].sells }}개</b-list-group-item>
             <b-list-group-item>평가 수 : {{ product[0].commentCnt }}개</b-list-group-item>
             <b-list-group-item v-if="product[0].commentCnt > 0">평균 평점 : {{ product[0].avg }}점</b-list-group-item>
             <b-list-group-item v-if="product[0].commentCnt == 0">평점 없음</b-list-group-item>
@@ -156,7 +156,10 @@ export default {
         console.log(error)
     })
   },
-  methods: { 
+  methods: {
+    movePage(url) {
+      this.$router.push(url);
+    },      
     checkValid() {
         const valid = this.$refs.form.checkValidity()
         this.commentState = valid
@@ -233,6 +236,12 @@ export default {
         .catch(error => {
             console.log(error)
         })
+        //this.movePage('/product-detail/' + this.$route.params.no)
+
+        // hide the modal manually
+        this.$nextTick(() => {
+            this.$bvModal.hide('modal-update-comment')
+        })        
     },
     updateSubmittedComment(index){ // submittedComment 정보를 업데이트 시킴.
         this.submittedUpdateComment['id'] = parseInt(this.product[index].commentId)
