@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:padding="20sp"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <NumberPicker
+            android:id="@+id/picker_month"
+            android:layout_width="wrap_content"
+            android:layout_height="150sp"
+            android:layout_marginRight="15sp"
+            android:layout_marginLeft="15sp"
+
+
+            android:theme="@style/NumberPicker"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="15sp"
+
+            android:text="월"
+            android:textSize="?attr/txtSize"
+            android:textColor="?attr/etcColor"/>
+
+        <NumberPicker
+            android:id="@+id/picker_day"
+            android:layout_width="wrap_content"
+            android:layout_height="150sp"
+            android:layout_marginLeft="15sp"
+            android:layout_marginRight="15sp"
+
+            android:theme="@style/NumberPicker" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="15sp"
+            android:text="일"
+
+            android:textSize="?attr/txtSize"
+            android:textColor="?attr/etcColor"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="취소"
+            android:layout_weight="1"
+
+            style="@style/Button"
+            android:textColor="?attr/etcColor"
+            android:background="@android:color/transparent"
+            />
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="확인"
+
+            style="@style/Button"
+            android:textColor="?attr/etcColor"
+            android:background="@android:color/transparent"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

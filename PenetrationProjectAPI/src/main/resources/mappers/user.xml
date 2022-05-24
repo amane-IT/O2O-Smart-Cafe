@@ -4,8 +4,8 @@
 <mapper namespace="com.ssafy.cafe.model.dao.UserDao">
 
 	<insert id="insert" parameterType="User">
-		INSERT INTO t_user (id, name, pass)
-		VALUES (#{id}, #{name}, #{pass})
+		INSERT INTO t_user (id, name, pass, birthday)
+		VALUES (#{id}, #{name}, #{pass}, #{birthday})
 	</insert>
 
 	<update id="update" parameterType="User">

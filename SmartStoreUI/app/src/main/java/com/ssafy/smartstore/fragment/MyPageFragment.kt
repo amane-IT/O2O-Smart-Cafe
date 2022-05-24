@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ssafy.smartstore.IntentApplication
+import com.ssafy.smartstore.LoginActivity
 import com.ssafy.smartstore.OrderDetailActivity
 import com.ssafy.smartstore.R
 import com.ssafy.smartstore.adapater.HistoryAdapter
@@ -72,12 +73,10 @@ class MyPageFragment : Fragment() {
             // 로그 아웃 버튼 클릭 시, 로그인 화면으로 & Shared Preference
             imgLogout.setOnClickListener {
                 val editor = prefs!!.edit()
-                editor.remove("id")
-                editor.remove("pwd")
-                editor.remove("name")
-                editor.remove("stamps")
+                editor.clear()
                 editor.commit()
 
+                startActivity(Intent(ctx, LoginActivity::class.java))
                 activity?.finish()
             }
 

@@ -55,7 +55,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         if(themeId == 1){
             setTheme(R.style.AppTheme)
         } else if(themeId == 2){
-            setTheme(R.style.AppTheme_Green)
+            setTheme(R.style.AppTheme_Blue)
         } else {
             setTheme(R.style.AppTheme_YB)
         }

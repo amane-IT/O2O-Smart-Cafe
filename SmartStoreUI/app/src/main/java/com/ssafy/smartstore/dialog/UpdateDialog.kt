@@ -75,6 +75,8 @@ class UpdateDialog(context: Context, comment: Comment) {
 
         dialog.show()
     }
+
+    // 별점이 1점 이하로 내려가지 않도록 한다
     inner class Listener : RatingBar.OnRatingBarChangeListener{
         override fun onRatingChanged(ratingBar: RatingBar?, rating: Float, fromUser: Boolean) {
             if (ratingScore.rating < 0.5f){

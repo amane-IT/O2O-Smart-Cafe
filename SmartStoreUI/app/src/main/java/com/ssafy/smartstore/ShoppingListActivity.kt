@@ -71,7 +71,7 @@ class ShoppingListActivity : AppCompatActivity() {
         if(themeId == 1){
             setTheme(R.style.AppTheme)
         } else if(themeId == 2){
-            setTheme(R.style.AppTheme_Green)
+            setTheme(R.style.AppTheme_Blue)
         } else {
             setTheme(R.style.AppTheme_YB)
         }
@@ -242,8 +242,7 @@ class ShoppingListActivity : AppCompatActivity() {
                             startActivity(intent)
                             IntentApplication.shoppingList.clear()
                             finish()
-                        }
-                        else
+                        } else
                             Toast.makeText(this@ShoppingListActivity, "주문 실패하였습니다.", Toast.LENGTH_SHORT).show()
 
                     }

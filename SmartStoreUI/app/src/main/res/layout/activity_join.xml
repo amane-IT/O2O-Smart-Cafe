@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context=".JoinActivity">
 
     <ImageView
@@ -11,7 +12,6 @@
         android:layout_width="200sp"
         android:layout_height="200sp"
         android:layout_gravity="center"
-        android:layout_marginTop="100sp"
         android:src="@drawable/logo"/>
 
 
@@ -28,6 +28,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="30sp"
+        android:layout_marginRight="30sp"
         android:orientation="horizontal">
 
         <EditText
@@ -36,9 +38,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:layout_marginBottom="10sp"
-            android:layout_marginLeft="30sp"
             android:layout_marginRight="10sp"
-            android:hint="아이디를 입력하세요."
+            android:hint="아이디를 입력하세요. *"
             android:inputType="text"
 
             android:background="@drawable/textview_regular"
@@ -51,7 +52,6 @@
             android:layout_width="60sp"
             android:layout_height="40sp"
             android:layout_weight="1"
-            android:layout_marginRight="30sp"
             android:src="@drawable/check_mark"
             android:scaleType="fitXY"
             android:onClick="checkId"
@@ -71,7 +71,7 @@
         android:layout_marginBottom="10sp"
         android:layout_marginLeft="30sp"
         android:layout_marginRight="30sp"
-        android:hint="비밀번호를 입력하세요."
+        android:hint="비밀번호를 입력하세요. *"
         android:inputType="text"
 
         android:background="@drawable/textview_regular"
@@ -85,13 +85,35 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30sp"
         android:layout_marginRight="30sp"
+        android:layout_marginBottom="10sp"
         android:inputType="text"
-        android:hint="별명을 입력하세요"
+        android:hint="별명을 입력하세요 *"
 
         android:background="@drawable/textview_regular"
         android:textColor="?attr/edColor"
         android:textColorHint="?attr/edColorHint"
         android:fontFamily="?attr/edFontFamily"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="30sp"
+        android:layout_marginRight="30sp">
+
+        <EditText
+            android:id="@+id/ed_birthday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="생일을 입력하세요"
+            android:clickable="true"
+            android:focusable="false"
+
+            android:background="@drawable/textview_regular"
+            android:textColor="?attr/edColor"
+            android:textColorHint="?attr/edColorHint"
+            android:fontFamily="?attr/edFontFamily"/>
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_join"

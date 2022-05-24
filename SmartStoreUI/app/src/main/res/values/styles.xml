@@ -32,9 +32,10 @@
 
         <item name="etcColor">@color/coffee_brown</item>
         <item name="backColor">@color/coffee_brown</item>
+
     </style>
 
-    <style name="AppTheme_Green" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppTheme_Blue" parent="Theme.AppCompat.NoActionBar">
         <item name="android:colorBackground">@color/white</item>
         <item name="android:fontFamily">@font/eland_choice_b</item>
         <item name="android:textColor">#04009A</item>
@@ -66,6 +67,7 @@
 
         <item name="etcColor">#595260</item>
         <item name="backColor">#3EDBF0</item>
+
     </style>
 
     <style name="AppTheme_YB" parent="Theme.AppCompat.NoActionBar">
@@ -100,6 +102,7 @@
 
         <item name="etcColor">#B2B1B9</item>
         <item name="backColor">#FFD523</item>
+
     </style>
 
     <style name="Button">
@@ -107,4 +110,8 @@
         <item name="android:layout_margin">5sp</item>
     </style>
 
+    <style name="NumberPicker" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textSize">25sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

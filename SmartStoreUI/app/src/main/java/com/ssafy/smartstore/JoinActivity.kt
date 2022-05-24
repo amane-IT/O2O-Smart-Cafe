@@ -2,13 +2,13 @@ package com.ssafy.smartstore
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
+import android.text.InputType
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.ssafy.smartstore.dto.User
 import com.ssafy.smartstore.databinding.ActivityJoinBinding
+import com.ssafy.smartstore.dialog.DateDialog
 import com.ssafy.smartstore.service.UserService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,6 +16,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 // F02: 회원 관리 - 회원 정보 추가 회원 가입 - 회원 정보를 추가할 수 있다.
 // F03: 회원 관리 - 회원 아이디 중복 확인 - 회원 가입 시 아이디가 중복되는지 여부를 확인할 수 있다.
@@ -25,8 +26,12 @@ class JoinActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityJoinBinding
     private var isUsable = false
-//    private val existId = "ssafy01"
+
     val userService = IntentApplication.retrofit.create(UserService::class.java)
+
+    val myCanlendar = Calendar.getInstance()
+    var birthday = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,26 +42,28 @@ class JoinActivity : AppCompatActivity() {
         if(themeId == 1){
             setTheme(R.style.AppTheme)
         } else if(themeId == 2){
-            setTheme(R.style.AppTheme_Green)
+            setTheme(R.style.AppTheme_Blue)
         } else {
             setTheme(R.style.AppTheme_YB)
         }
 
+        instance = this
+
         binding = ActivityJoinBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // 생일
+
         binding.apply {
-            etId.addTextChangedListener (object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            edBirthday.inputType = InputType.TYPE_NULL
 
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    isUsable = false
-                    imgbtnCheckId.setImageResource(R.drawable.check_mark)
-                }
+            edBirthday.setOnClickListener {
+                Log.d(TAG, "onCreate: 생일 터치")
 
-                override fun afterTextChanged(s: Editable?) {}
+                val dialog = DateDialog(this@JoinActivity)
+                dialog.start()
 
-            })
+            }
 
             CoroutineScope(Dispatchers.Main).launch {
                 btnJoin.setOnClickListener {
@@ -131,13 +138,27 @@ class JoinActivity : AppCompatActivity() {
 
     private fun insertUserInfo(id: String, pwd: String, name: String): Int {
         val response = userService.insertUser(User(id, name, pwd)).execute()
-        val result = if(response.code() == 200){
+        val result = if (response.code() == 200) {
             var res = response.body()
-            if(res == true)
+            if (res == true)
                 return 1
             else
                 return 2
         } else
             return response.code()
+    }
+
+    fun setBirthdayText(birthday: String){
+        binding.edBirthday.setText(birthday)
+    }
+
+    companion object{
+        private var instance: JoinActivity? = null
+
+        fun getInstanceJoin(): JoinActivity{
+            if(instance == null)
+                instance = JoinActivity()
+            return instance!!
+        }
     }
 }
