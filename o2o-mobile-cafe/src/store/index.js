@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import http from '@/util/http-common'
+import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
@@ -114,7 +115,7 @@ export default new Vuex.Store({
           }
           else {
             // 2. 존재한다면, pass가 일치하는지 확인하자.
-            if (response.data["user"].pass === user.pass) {
+            if (response.data["user"].pass === user.pass) {              
               alert('로그인 성공!!!')
               // console.log(response.data)
               commit('LOGIN_USER', response.data)
@@ -149,19 +150,17 @@ export default new Vuex.Store({
         console.log(error)
       })
     },
-    setCookie({state}, data) {
+    setCookie(_, data) {
       // 쿠키 설정해 로그인 상태 유지
       http.post('/user/login', data)
       .then(response => { // response == cookie
         if (response.status == 200) { // 성공!
           // 쿠키에 토큰 설정
           console.log("Cookie Response : " + JSON.stringify(response))
-          // console.log("Cookie Response : " + response.data) -> 값 비어 있음
-          // console.log("Cookie Token : " + response.data.token) -> undefined
           // window.$cookies.set("accessToken", response)
           // http.defaults.headers.common["x-access-token"] = response
-          window.$cookies.set("id", state.loginUser['user'].id)
-          window.$cookies.set("loginuser", data)
+          // window.$cookies.set("id", state.loginUser['user'].id)
+          window.$cookies.set("loginuser", response)
         }
       })
       .catch(error => {
@@ -170,5 +169,16 @@ export default new Vuex.Store({
     }
   },
   modules: {
-  }
+  },
+  plugins: [
+    createPersistedState(
+    // {
+    //   storage: window.sessionStorage,
+    //   reducer: state => ({
+    //     loginUser: [],
+    //     isLoggedin: false
+    //   })
+    // }
+    )
+  ]
 })

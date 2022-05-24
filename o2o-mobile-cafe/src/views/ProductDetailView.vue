@@ -208,6 +208,9 @@ export default {
         this.$nextTick(() => {
             this.$bvModal.hide('modal-add-comment')
         })
+
+        // 새로고침
+        this.$router.go()
     },
     handleUpdateOk(bvModalEvent) {
         // prevent modal from closing
@@ -241,7 +244,10 @@ export default {
         // hide the modal manually
         this.$nextTick(() => {
             this.$bvModal.hide('modal-update-comment')
-        })        
+        })
+
+        // 새로고침
+        this.$router.go()
     },
     updateSubmittedComment(index){ // submittedComment 정보를 업데이트 시킴.
         this.submittedUpdateComment['id'] = parseInt(this.product[index].commentId)
@@ -259,6 +265,8 @@ export default {
                 console.log("DELETE Status Code : " + response.status)
                 if (response.data) {
                     alert("삭제 완료되었습니다!")
+                    // 새로고침
+                    this.$router.go()
                 }
             })
             .catch(error => {

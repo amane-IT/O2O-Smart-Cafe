@@ -118,24 +118,8 @@ export default {
                   this.$set(this.counts, 10 - detailList[i].productId, 0)
                 }
                 this.totalCount = 0
-                // // 새로고침
-                // this.$router.go()
-                // let form = {
-                //   'id': window.$cookies.get("id"),
-                //   'pass': window.$cookies.get("pass")
-                // }
-                // this.$store.dispatch('login', form)
-                // const cookie = window.$cookies.get("accessToken")
-                // alert(JSON.stringify(cookie))                
-                // let form = {
-                //   id: ,
-                //   pass: ''
-                // }
-                // const cookie = window.$cookies.get("loginuser")
-                // const id = window.$cookies.get("id")
-                // this.$store.commit('LOGIN_USER', cookie)
-                // this.$store.commit('SET_USER_GRADE', cookie["user"].stamps)
-                // this.$store.dispatch('selectOrderByUser', id)         
+                // 새로고침
+                this.$router.go()
             }
         })
         .catch(error => {
