@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.NFC" /> <!-- 블루투스 권한 추가 -->
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/><!-- 전화 권한 -->
 
     <application
         android:name=".IntentApplication"

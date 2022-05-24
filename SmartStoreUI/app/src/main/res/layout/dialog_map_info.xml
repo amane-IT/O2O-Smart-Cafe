@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:gravity="center_horizontal"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tv_cafe_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="싸피벅스"
+        android:textSize="20sp"
+        android:textColor="@color/coffee_dark_brown"
+        android:layout_gravity="start"/>
+
+    <ImageView
+        android:id="@+id/img_cafe_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:layout_margin="16dp"
+        android:src="@drawable/logo"/>
+
+    <LinearLayout
+        android:id="@+id/layout_order_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="주문 가능 시간"
+            android:textSize="32sp"
+            android:textColor="@color/coffee_dark_brown"
+            android:layout_gravity="start"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/tv_order_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="주중 07:00~20:30\n주말 09:00~22:00"
+            android:textSize="20sp"
+            android:fontFamily="@font/eland_choice_m"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end">
+        <Button
+            android:id="@+id/btn_search_direction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:fontFamily="@font/eland_choice_m"
+            android:text="길찾기"/>
+
+        <Button
+            android:id="@+id/btn_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:fontFamily="@font/eland_choice_m"
+            android:text="전화걸기"/>
+    </LinearLayout>
+</LinearLayout>

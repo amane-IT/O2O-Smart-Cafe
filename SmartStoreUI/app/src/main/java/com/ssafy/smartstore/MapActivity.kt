@@ -25,11 +25,12 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.normal.TedPermission
 import com.ssafy.smartstore.databinding.ActivityMapBinding
+import com.ssafy.smartstore.dialog.MapInfoDialog
 import java.io.IOException
 import java.util.*
 
 // F16 - 회원 위치 알림 (Google map)
-class MapActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private lateinit var binding: ActivityMapBinding
 
@@ -133,8 +134,20 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         markerOptions.apply {
             position(cafeLatLng)
             draggable(true)
+            title("SSAFYBUCKS")
         }
         cafeMarker = mMap!!.addMarker(markerOptions)
+        mMap!!.setOnMarkerClickListener(this)
+    }
+
+    /** Called when the user clicks a marker. */
+    override fun onMarkerClick(marker: Marker): Boolean {
+//        Toast.makeText(this, marker.title + '\n' + marker.position, Toast.LENGTH_SHORT).show()
+        // MapInfoDialog 띄우기
+        val dialog = MapInfoDialog(this@MapActivity)
+        dialog.start(marker.title!!)
+
+        return true
     }
 
     // 위치를 업데이트
