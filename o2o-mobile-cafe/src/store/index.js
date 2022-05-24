@@ -141,6 +141,23 @@ export default new Vuex.Store({
     logout({ commit }) {
       commit('LOGOUT_USER')
     },
+    selectUserInfo({ commit, state }, userid) {
+      if (!state.isLoggedin) {
+        alert('로그인 상태가 아님!!')
+      }
+      else {
+        http.post('/user/info', null, {params: {id: userid}})
+        .then(response => {
+          commit('LOGIN_USER', response.data)
+
+          // stamps 정보로 stamp 등급 계산하기
+          commit('SET_USER_GRADE', response.data["user"].stamps)
+        })
+        .catch(error => {
+          console.log(error)
+        })        
+      }
+    },
     selectOrderByUser({ commit }, id) {
       http.get('/order/byUser', {params: {id: id}})
       .then((response) => {

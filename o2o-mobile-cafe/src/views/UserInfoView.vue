@@ -93,6 +93,10 @@ export default {
         return false
       }
     },
+    created() {
+      // 이걸 computed userGrade에 넣으니까 화면 표시 딜레이가 있더라 여기서 작업하자
+      this.$store.dispatch('selectUserInfo', this.loginUser['user'].id)
+    },
     computed: {
       loginUser() {
         return this.$store.getters.getLoginUser;
