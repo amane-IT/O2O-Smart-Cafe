@@ -57,7 +57,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun getPreference(){
         val prefs = getSharedPreferences("prefs", MODE_PRIVATE)
-        if(!prefs!!.getString("name", "정보 없음").equals("정보 없음")){
+        if(!prefs!!.getString("name", "비회원").equals("비회원")){
             binding.etId.setText(prefs!!.getString("id", ""))
             binding.etPwd.setText(prefs!!.getString("pwd", ""))
         }
@@ -102,8 +102,8 @@ class LoginActivity : AppCompatActivity() {
                                 if (response.code() == 200) {
                                     val res = response.body() ?: mutableMapOf()
                                     val gson = Gson()
-                                    val result = gson.fromJson(response.body()!!.get("user").toString(), User::class.java)
-                                    val level = gson.fromJson(response.body()!!.get("grade").toString(), Grade::class.java)
+                                    val result = gson.fromJson(res.get("user").toString(), User::class.java)
+                                    val level = gson.fromJson(res.get("grade").toString(), Grade::class.java)
                                     Log.d(TAG, "onResponse: ${result}")
                                     // result의 비번과 입력한 비번이 맞을 경우
                                     if (result.pass.equals(pwd)) {
@@ -172,6 +172,47 @@ class LoginActivity : AppCompatActivity() {
                 return 2
         } else{
             return 3
+        }
+    }
+
+    fun loginNoUser(view: View) {
+        binding.apply {
+            // 사용자에게 아이디와 비밀번호를 전달받는다.
+            userService.getUserInfo("noUser").enqueue(object : Callback<Map<String, Object>> {
+                override fun onResponse(
+                    call: Call<Map<String, Object>>,
+                    response: Response<Map<String, Object>>
+                ) {
+                    if (response.code() == 200) {
+                        val res = response.body() ?: mutableMapOf()
+                        val gson = Gson()
+                        val result = gson.fromJson(res.get("user").toString(), User::class.java)
+                        Log.d(TAG, "onResponse: ${result}")
+                        // result의 비번과 입력한 비번이 맞을 경우
+                        setPreference(result)
+
+                        // grade 정보 저장
+                        IntentApplication.grade = Grade("smile.png", "비회원")
+
+                        // login api를 사용한다면 여기에 추가하기
+                        etId.text = null
+                        etPwd.text = null
+                        var intent = Intent(this@LoginActivity, MainActivity::class.java)
+
+                        // 날짜
+                        val cal = Calendar.getInstance()
+                        val today = "${cal.get(Calendar.MONTH) + 1}_${cal.get(Calendar.DAY_OF_MONTH)}"
+                        if(birthDay.equals(today))
+                            intent = Intent(this@LoginActivity, SplashActivity::class.java)
+
+                        startActivity(intent)
+                        finish()
+                    }
+                }
+                override fun onFailure(call: Call<Map<String, Object>>, t: Throwable) {
+                    Log.d(TAG, "onFailure: 통신 실패4, ${t.message}")
+                }
+            })
         }
     }
 }

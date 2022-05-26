@@ -44,7 +44,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerC
     private lateinit var mCurrentLocation: Location
     private lateinit var currentPosition: LatLng
 
-    private val cafeLatLng = LatLng(35.175595791074, 129.07040766977)
+    private val cafeLatLng = LatLng(37.545547, 126.971578)
     private var cafeMarker: Marker? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

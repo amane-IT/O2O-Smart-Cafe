@@ -40,7 +40,7 @@ class RatingDialog(context: Context, comment: Comment) {
         btnOk.setOnClickListener {
 
             val rate = ratingScore.rating.toDouble()
-            comment.rating = rate
+            comment.rating = rate * 2
             CoroutineScope(Dispatchers.IO).launch {
                 val response = commentService.insert(comment).execute()
                 if(response.code() == 200){

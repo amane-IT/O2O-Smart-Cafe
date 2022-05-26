@@ -74,12 +74,20 @@ class OrderActivity : AppCompatActivity() {
         if(flag)
             isFavorite = intent.getSerializableExtra("favorite") as Favorite
 
-        if(isFavorite != null){
-            binding.btnFavorite.setImageResource(R.drawable.outline_favorite_24)
-            binding.btnFavorite.tag = true
-        } else {
-            binding.btnFavorite.setImageResource(R.drawable.outline_favorite_border_24)
-            binding.btnFavorite.tag = false
+        if(!intent.getBooleanExtra("flag", false)){
+            binding.btnFavorite.visibility = View.INVISIBLE
+            binding.btnFavorite.isClickable = false
+        }
+
+        if(binding.btnFavorite.visibility != View.INVISIBLE) {
+            if (isFavorite != null) {
+                binding.btnFavorite.setImageResource(R.drawable.outline_favorite_24)
+                binding.btnFavorite.tag = true
+
+            } else {
+                binding.btnFavorite.setImageResource(R.drawable.outline_favorite_border_24)
+                binding.btnFavorite.tag = false
+            }
         }
 
         binding.btnFavorite.setOnClickListener {

@@ -19,7 +19,7 @@ import com.ssafy.cafe.model.service.UserService;
 // @Transactional
 public abstract class AbstractServiceTest {
 
-	public static User user = new User("ssafy01", "김싸피", "pass01", 5);
+	public static User user = new User("ssafy01", "김싸피", "pass01", 5, null);
 
 	/*
     public static UserService userService;

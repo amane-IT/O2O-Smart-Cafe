@@ -1,6 +1,8 @@
 package com.ssafy.smartstore
 
+import android.app.AlertDialog
 import android.app.PendingIntent
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.IntentFilter
 import android.nfc.NdefMessage
@@ -223,7 +225,7 @@ class ShoppingListActivity : AppCompatActivity() {
 
             Log.d(TAG, "order: order_table = ${order_table} \n tableNum = ${tableNum}")
 
-            if(!tableNum.equals("No.0") || order_table == "1"){
+            if(!tableNum.equals("No.0") || order_table == "0"){
                 val time = SimpleDateFormat("yyyy.MM.dd").format(System.currentTimeMillis())
                 val order = Order(userId, order_table, time, 'N', detailList)
                 val insertId = insertOrder(order)
@@ -232,19 +234,46 @@ class ShoppingListActivity : AppCompatActivity() {
 
                 if(insertId != -1){
 
-                    this.launch(Dispatchers.Main) {
-                        val intent = Intent(this@ShoppingListActivity, MainActivity::class.java)
-                        if(updateStamp == 1) {
-                            Toast.makeText(
-                                this@ShoppingListActivity, "주문이 완료되었습니다. \n" +
-                                        " 스탬프가 ${totalCnt}개 적립되었습니다.", Toast.LENGTH_SHORT
-                            ).show()
-                            startActivity(intent)
-                            IntentApplication.shoppingList.clear()
-                            finish()
-                        } else
-                            Toast.makeText(this@ShoppingListActivity, "주문 실패하였습니다.", Toast.LENGTH_SHORT).show()
+                    if(userId == "noUser"){
+                        this.launch(Dispatchers.Main) {
+                            val intent = Intent(this@ShoppingListActivity, MainActivity::class.java)
+                            val builder = AlertDialog.Builder(this@ShoppingListActivity, R.style.AppCompatAlertDialog)
+                            builder.setTitle("주문번호")
+                                .setMessage("주문 번호는 ${insertId}입니다!")
+                                .setPositiveButton("확인",
+                                    DialogInterface.OnClickListener { dialog, which ->
+                                        intent.putExtra("orderId", insertId)
+                                        startActivity(intent)
+                                        IntentApplication.shoppingList.clear()
+                                        finish()
+                                        dialog.dismiss()
+                                    }
+                                )
+                                .setCancelable(false)
+                            builder.show()
 
+
+                        }
+                    }
+                    else {
+                        this.launch(Dispatchers.Main) {
+                            val intent = Intent(this@ShoppingListActivity, MainActivity::class.java)
+                            if (updateStamp == 1) {
+                                Toast.makeText(
+                                    this@ShoppingListActivity, "주문이 완료되었습니다. \n" +
+                                            " 스탬프가 ${totalCnt}개 적립되었습니다.", Toast.LENGTH_SHORT
+                                ).show()
+                                startActivity(intent)
+                                IntentApplication.shoppingList.clear()
+                                finish()
+                            } else
+                                Toast.makeText(
+                                    this@ShoppingListActivity,
+                                    "주문 실패하였습니다.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+                        }
                     }
                 } else{
                     this.launch(Dispatchers.Main) {

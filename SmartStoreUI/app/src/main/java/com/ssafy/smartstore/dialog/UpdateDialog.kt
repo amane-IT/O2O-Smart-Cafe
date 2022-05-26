@@ -22,7 +22,7 @@ class UpdateDialog(context: Context, comment: Comment) {
     private lateinit var etvContent: EditText
     private lateinit var ratingScore: RatingBar
     private lateinit var tvScore: TextView
-    private val comment = comment
+    private var comment = comment
 
     private val commentService = IntentApplication.retrofit.create(CommentService::class.java)
 
@@ -39,6 +39,7 @@ class UpdateDialog(context: Context, comment: Comment) {
         btnOk = dialog.findViewById(R.id.btn_ok)
 
         etvContent.setText(comment.comment)
+        Log.d("TAG", "start: ${comment.comment}")
         tvScore.text = "${comment.rating}점"
         ratingScore.rating = comment.rating.toFloat() / 2
 
@@ -54,7 +55,7 @@ class UpdateDialog(context: Context, comment: Comment) {
                 val result = if(response.code() == 200){
                     var res = response.body()
                     if(res == false){
-                        Log.d("TAG", "start: 성공")
+                        Log.d("TAG", "start: $comment")
                         //Toast.makeText(this@UpdateDialog, "update 실패!", Toast.LENGTH_SHORT).show()
                         false
                     } else{

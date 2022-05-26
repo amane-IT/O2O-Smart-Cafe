@@ -19,7 +19,7 @@ class StampServiceTest extends AbstractServiceTest {
 	@Test
 	@org.junit.jupiter.api.Order(1)
 	public void stampTest() {
-		User testUser = new User("test", "test", "test", 0);
+		User testUser = new User("test", "test", "test", 0, null);
 		userService.join(testUser);
 
 		Order order = new Order(testUser.getId(), "table_test", new Date(), 'N');

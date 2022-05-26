@@ -42,39 +42,50 @@ class MyPageFragment : Fragment() {
 
             tvNickname.text = prefs!!.getString("name", "정보 없음")
 
-            // 스탬프 관련 UI 변경
-            var level = IntentApplication.grade
-            val resId = ctx.resources.getIdentifier("${level.img.substring(0, level.img.length - 4)}", "drawable", ctx.packageName)
-            stampImg.setImageResource(resId)
+            if(tvNickname.text != "비회원"){
+                // 스탬프 관련 UI 변경
+                var level = IntentApplication.grade
+                val resId = ctx.resources.getIdentifier("${level.img.substring(0, level.img.length - 4)}", "drawable", ctx.packageName)
+                stampImg.setImageResource(resId)
 
-            tvStamp.text = "${level.title} ${level.step}단계"
+                tvStamp.text = "${level.title} ${level.step}단계"
 
-            if(level.title.equals("씨앗"))
-                stampProgress.max = 10
-            else if (level.title.equals("꽃"))
-                stampProgress.max = 15
-            else if (level.title.equals("열매"))
-                stampProgress.max = 20
-            else if (level.title.equals("커피콩"))
-                stampProgress.max = 25
-            else {
-                stampProgress.max = 100
-                stampProgress.progress = 100
-                statusProgress.text = "☆ 나무입니다 ☆"
-                tvRemain.text = "다 모았습니다."
+                if(level.title.equals("씨앗"))
+                    stampProgress.max = 10
+                else if (level.title.equals("꽃"))
+                    stampProgress.max = 15
+                else if (level.title.equals("열매"))
+                    stampProgress.max = 20
+                else if (level.title.equals("커피콩"))
+                    stampProgress.max = 25
+                else {
+                    stampProgress.max = 100
+                    stampProgress.progress = 100
+                    statusProgress.text = "☆ 나무입니다 ☆"
+                    tvRemain.text = "다 모았습니다."
+                }
+
+                if(level.title != ("나무")){
+                    stampProgress.progress = stampProgress.max - level.to
+                    statusProgress.text = "${stampProgress.progress}/${stampProgress.max}"
+                    tvRemain.text = "다음 레벨까지 앞으로 ${level.to}잔 남았습니다."
+                }
+            } else{
+                stampImg.visibility = View.INVISIBLE
+                tvStamp.visibility = View.INVISIBLE
+                tvRemain.visibility = View.INVISIBLE
+                statusProgress.visibility = View.INVISIBLE
+                stampProgress.visibility = View.INVISIBLE
             }
 
-            if(!level.title.equals("나무")){
-                stampProgress.progress = stampProgress.max - level.to
-                statusProgress.text = "${stampProgress.progress}/${stampProgress.max}"
-                tvRemain.text = "다음 레벨까지 앞으로 ${level.to}잔 남았습니다."
-            }
+
 
             // 로그 아웃 버튼 클릭 시, 로그인 화면으로 & Shared Preference
             imgLogout.setOnClickListener {
                 val editor = prefs!!.edit()
                 editor.clear()
                 editor.commit()
+                IntentApplication.shoppingList.clear()
 
                 startActivity(Intent(ctx, LoginActivity::class.java))
                 activity?.finish()
@@ -83,7 +94,8 @@ class MyPageFragment : Fragment() {
             myPageAdapter = HistoryAdapter(ctx, "MyPage")
 
             CoroutineScope(Dispatchers.Main).launch {
-                getItems(prefs!!.getString("id", "").toString())
+                if(prefs!!.getString("id", "").toString() != "noUser")
+                    getItems(prefs!!.getString("id", "").toString())
             }
             // 주문 내역 표기
             listView.layoutManager = LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL, false)

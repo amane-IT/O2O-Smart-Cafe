@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import com.ssafy.cafe.model.dto.User;
 
 class UserServiceTest extends AbstractServiceTest {
-	private User testUser = new User("test", "test", "test", 0);
+	private User testUser = new User("test", "test", "test", 0, null);
 
 	@Test
 	@org.junit.jupiter.api.Order(1)

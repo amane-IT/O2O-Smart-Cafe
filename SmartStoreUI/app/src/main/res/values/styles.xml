@@ -123,4 +123,8 @@
         <item name="android:textSize">25sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="AppCompatAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@android:color/white</item>
+    </style>
 </resources>

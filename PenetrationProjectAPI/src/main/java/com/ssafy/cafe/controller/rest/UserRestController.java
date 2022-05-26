@@ -71,9 +71,21 @@ public class UserRestController {
 	@PostMapping("/info")
 	@ApiOperation(value = "사용자의 정보와 함께 사용자의 주문 내역, 사용자 등급 정보를 반환한다.", response = Map.class)
 	public Map<String, Object> getInfo(String id) {
-		User selected = uService.info(id);
+		
 		
 		System.out.println(id);
+		if(id.equals("noUser")) {
+			Map<String, Object> info = new HashMap<>();
+			info.put("user", new User("noUser", "비회원", 0));
+//			List<Order> orders = oService.getOrdreByUser(id);
+//			info.put("order", orders);
+//			info.put("grade", getGrade(selected.getStamps()));
+			System.out.println("여기서 나감");
+			return info;
+		}
+		
+		User selected = uService.info(id);
+		
 		if (selected == null) {
 			return null;
 		}

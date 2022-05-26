@@ -63,6 +63,8 @@ class MenuDetailFragment : Fragment() {
                         if(i.productId == menuAdapter.listData[position].id){
                             intent.putExtra("favorite", i)
                             intent.putExtra("flag", true)
+                            if(userId != "noUser")
+                                intent.putExtra("isUser", true)
                             break
                         }
                     }
@@ -87,8 +89,9 @@ class MenuDetailFragment : Fragment() {
         menuAdapter = MenuAdapter(ctx)
         getData()
         getFavorite()
-        getTop3()
         getUserMenu()
+        getTop3()
+
         menuAdapter.notifyDataSetChanged()
 
     }
@@ -123,12 +126,14 @@ class MenuDetailFragment : Fragment() {
     private fun getFavorite(){
         val fService = IntentApplication.retrofit.create(FavoriteService::class.java)
         userId = activity?.getSharedPreferences("prefs", AppCompatActivity.MODE_PRIVATE)?.getString("id", "")
-        CoroutineScope(Dispatchers.IO).launch {
-            val response = fService.getFavorites(userId!!).execute()
-            if(response.code() == 200){
-                var res = response.body()
-                if(res != null)
-                    fList = (res as MutableList<Favorite>)
+        if(userId != "noUser") {
+            CoroutineScope(Dispatchers.IO).launch {
+                val response = fService.getFavorites(userId!!).execute()
+                if (response.code() == 200) {
+                    var res = response.body()
+                    if (res != null)
+                        fList = (res as MutableList<Favorite>)
+                }
             }
         }
     }
@@ -162,27 +167,29 @@ class MenuDetailFragment : Fragment() {
 
     private fun getUserMenu(){
         val oService = IntentApplication.retrofit.create(OrderService::class.java)
-        oService.getUserMenu(userId!!).enqueue(object : Callback<Int> {
-            override fun onResponse(call: Call<Int>, response: Response<Int>) {
-                val res = response.body()
-                if (response.code() == 200) {
-                    if(res != null){
-                        menuAdapter.best = res
-                        Log.d("TAG", "getTop3: data change start")
-                        menuAdapter.notifyDataSetChanged()
-                        Log.d("TAG", "getTop3: data change end")
-                    }
-                    else {
-                        CoroutineScope(Dispatchers.Main).launch{
-                            Toast.makeText(activity, "TOP 정보를 가져올 수 없음!", Toast.LENGTH_SHORT).show()
+        if(userId != "noUser") {
+            oService.getUserMenu(userId!!).enqueue(object : Callback<Int> {
+                override fun onResponse(call: Call<Int>, response: Response<Int>) {
+                    val res = response.body()
+                    if (response.code() == 200) {
+                        if (res != null) {
+                            menuAdapter.best = res
+                            Log.d("TAG", "getTop3: data change start")
+                            menuAdapter.notifyDataSetChanged()
+                            Log.d("TAG", "getTop3: data change end")
+                        } else {
+                            CoroutineScope(Dispatchers.Main).launch {
+                                Toast.makeText(activity, "TOP 정보를 가져올 수 없음!", Toast.LENGTH_SHORT)
+                                    .show()
+                            }
                         }
                     }
                 }
-            }
 
-            override fun onFailure(call: Call<Int>, t: Throwable) {
-                Log.d("TAG", "onFailure: 통신 오류!")
-            }
-        })
+                override fun onFailure(call: Call<Int>, t: Throwable) {
+                    Log.d("TAG", "onFailure: 통신 오류!")
+                }
+            })
+        }
     }
 }

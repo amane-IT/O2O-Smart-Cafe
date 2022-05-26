@@ -49,8 +49,13 @@ class HomeFragment : Fragment() {
         if(message){
             noticeList.add("생일 축하드립니다! \n생일 쿠폰 3개가 발급되었습니다! \n행복한 하루 되세요~")
         }
-        noticeList.add("오늘 적립한 스탬프의 개수는 5개 입니다.")
-        noticeList.add("주문하신 메뉴가 나왔습니다.")
+        if(prefs!!.getString("id", "").toString() != "noUser"){
+            noticeList.add("오늘 적립한 스탬프의 개수는 5개 입니다.")
+            noticeList.add("주문하신 메뉴가 나왔습니다.")
+        }
+        else{
+            noticeList.add("회원가입을 하시면 다양한 혜택을 받으실 수 있습니다.")
+        }
 
         return FragmentHomeBinding.inflate(inflater, container, false).apply {
 
@@ -61,7 +66,8 @@ class HomeFragment : Fragment() {
             homeAdapter = HistoryAdapter(ctx, "Home")
 
             CoroutineScope(Dispatchers.Main).launch {
-                getItems(prefs!!.getString("id", "").toString())
+                if(prefs!!.getString("id", "").toString() != "noUser")
+                    getItems(prefs!!.getString("id", "").toString())
             }
 
             tvNickname.text = prefs!!.getString("name", "").toString() + "님"
