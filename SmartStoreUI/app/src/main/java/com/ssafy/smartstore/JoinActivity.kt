@@ -115,7 +115,7 @@ class JoinActivity : AppCompatActivity() {
             Log.d(TAG, "confirmBirthday: $birthday")
             if(birthday == null){
                 Log.d(TAG, "joinUserInfo: 없음")
-                val builder = AlertDialog.Builder(this@JoinActivity)
+                val builder = AlertDialog.Builder(this@JoinActivity, R.style.AppCompatAlertDialog)
                 builder.setTitle("생일을 입력하시지 않으셨습니다.")
                     .setMessage("생일을 입력하시지 않으면 생일 관련 쿠폰이나 이벤트에 참여하시지 못하는 데 괜찮으신가요?")
                     .setPositiveButton("확인",

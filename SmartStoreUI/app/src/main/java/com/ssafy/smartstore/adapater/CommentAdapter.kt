@@ -69,7 +69,7 @@ class CommentAdapter(val context: Context): RecyclerView.Adapter<CommentAdapter.
                 dialog.start()
             }
             btnDelete.setOnClickListener {
-                val dialog = AlertDialog.Builder(context)
+                val dialog = AlertDialog.Builder(context, R.style.AppCompatAlertDialog)
                     .setTitle("코멘트를 삭제하시겠습니까?")
                     .setMessage("'${objects[position].comment}'를 삭제하시겠습니까?")
                     .setPositiveButton("네", DialogInterface.OnClickListener { dialog, id ->

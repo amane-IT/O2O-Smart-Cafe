@@ -249,7 +249,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerC
     /******** 위치서비스 활성화 여부 check *********/
     private val GPS_ENABLE_REQUEST_CODE = 2001
     private fun showDialogForLocationServiceSetting() {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this, R.style.AppCompatAlertDialog)
         builder.setTitle("위치 서비스 비활성화")
         builder.setMessage(
             "앱을 사용하기 위해서는 위치 서비스가 필요합니다.\n"
